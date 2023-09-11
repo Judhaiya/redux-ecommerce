@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import "../styles/index.css";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 

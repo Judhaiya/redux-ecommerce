@@ -1,15 +1,9 @@
-import './App.css';
-import Navbar from './components/Navbar';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Provider } from 'react-redux';
-
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
     <div className="App">
-      <Provider>
-        <Navbar />
-      </Provider>
+      <Navbar />
     </div>
   );
 }
