@@ -1,4 +1,4 @@
-.font-family-raleaway {
+.font-family-abril {
     font-family: 'Abril Fatface', cursive;
 }
 
@@ -20,4 +20,7 @@
 
 .column-gap-sm {
     column-gap: 0.6rem;
+}
+.padding-leftRight {
+    padding: 0 2rem 0;
 }
