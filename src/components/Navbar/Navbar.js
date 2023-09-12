@@ -3,27 +3,6 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 import React, { useEffect } from "react";
 const Navbar = (props) => {
-  useEffect(() => {
-    //  fetch("/api/authors", {
-    //     method:"post",
-    //     headers: {
-    //     "Content-Type": "application/json"
-    //     },
-    //     body:{
-    //          }
-    //  }).then(res=>res)   
-    //  .then(data=>console.log(data.json()))
-    (async () => {
-      const response = await fetch("/movies", {
-        method: "post",
-        body: { id: 1, name: "Inception", year: 2010 }
-      });
-      
-      console.log("response", response);
-    })();
-  
-  }, []);
-
   return (
     <div className="d-flex justify-content-space-btw padding-2rem">
       <div className="font-family-abril">Logo</div>
