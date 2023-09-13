@@ -1,15 +1,15 @@
-import { createSlice  } from "@mui/icons-material";
+import { createSlice } from "@mui/icons-material";
 
 const authSlice = createSlice({
-    name : "authSlice",
-    initialState:{
-       userDetails:{
-
-       }
+    name: "authSlice",
+    initialState: {
+        userDetails: {}
     },
-    reducers:{
-
+    reducers: {
+        getRegisteredUserDetails: (state, payload) => {
+            state.userDetails = {}
+        }
     }
 })
-
-export default authSlice.reducers
+export const { getRegisteredUserDetails } = authSlice.actions
+export default authSlice.reducer
