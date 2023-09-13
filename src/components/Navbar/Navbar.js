@@ -1,7 +1,6 @@
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-import React, { useEffect } from "react";
 const Navbar = (props) => {
   return (
     <div className="d-flex justify-content-space-btw padding-2rem">
@@ -10,7 +9,7 @@ const Navbar = (props) => {
         <input type="text" />
         <button>search</button>
       </div>
-      <div className="d-flex column-gap-sm">
+      <div className="d-flex column-gap-sm align-items-ctr">
         <ShoppingCartIcon />
         <div>
           {props.isLoggedIn ? (
@@ -21,7 +20,7 @@ const Navbar = (props) => {
         </div>
       </div>
     </div>
-  );
+   );
 };
 
 export default Navbar;

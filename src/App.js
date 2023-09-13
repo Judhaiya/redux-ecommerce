@@ -1,33 +1,15 @@
-import React, { useEffect } from "react";
-
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
-import { apiConfiguration } from "./services/api";
+import AppRoutes from "./routes";
 
 function App() {
-  useEffect(() => {
-    apiConfiguration()
-    fetch("/movies")
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json, "json");
-      })
-    fetch("/movies", {
-      method: "post",
-      body: {
-        id: 6,
-        title: 'glenn'
-      }
-    })
-      .then(res => res.json())
-      .then((json) => {
-        console.log(json, "json");
-      })
-  }, []);
+
   return (
-    <div className="App">
-      <Navbar />
+   <div className="App">
+     <AppRoutes/>
     </div>
+ 
   );
 }
 
