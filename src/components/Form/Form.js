@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 const Form = (props) => {
   const updateFormField = (e) => {
@@ -7,7 +7,13 @@ const Form = (props) => {
       [e.target.name]: e.target.value
     });
   };
- return (
+
+  const handleSubmission = (e) => {
+    e.preventDefault();
+    props.loginUser(props.userDetails);
+  };
+
+  return (
     <>
       <div className="d-flex justify-content-ctr align-items-ctr flex-direction-column vertically-center ">
         <p className="font-family-abril">Logo</p>
@@ -25,9 +31,9 @@ const Form = (props) => {
             <div>UserName</div>
             <input
               type="text"
-              value={props.userDetails.userName}
+              value={props.userDetails.username}
               onChange={(e) => updateFormField(e)}
-              name="userName"
+              name="username"
             />
           </div>
           <div className="margin-vertical">
@@ -41,7 +47,7 @@ const Form = (props) => {
               />
             </div>
           </div>
-          <button>Register</button>
+          <button onClick={handleSubmission}>Register</button>
         </form>
       </div>
     </>

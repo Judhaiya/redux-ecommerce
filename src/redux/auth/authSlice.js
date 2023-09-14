@@ -1,15 +1,21 @@
-import { createSlice } from "@mui/icons-material";
+import { createSlice } from "@reduxjs/toolkit"
 
 const authSlice = createSlice({
     name: "authSlice",
     initialState: {
-        userDetails: {}
+        userDetails: {data:null,error:{}},
     },
     reducers: {
-        getRegisteredUserDetails: (state, payload) => {
-            state.userDetails = {}
+        getRegisteredUserDetails: (state,userResponse) => {
+            console.log(state,userResponse.payload,userResponse,"state.userdetails")
+            state.userDetails.data = userResponse.payload
+        },
+        loginFailedErrors:(state,errors) =>{
+            console.log("error", "data",errors)
+            state.userDetails.error.msg =errors.payload
+            console.log(state.userDetails,"after updating error")
         }
     }
 })
-export const { getRegisteredUserDetails } = authSlice.actions
+export const { getRegisteredUserDetails,loginFailedErrors } = authSlice.actions
 export default authSlice.reducer

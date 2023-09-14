@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import Form from "../../../components/Form/Form";
 import "../Register/Register.css";
+import { SIGN_IN_USER } from "../../../redux/auth/actions";
 
 const Register = () => {
   const [registerUserDetails, setRegisterUserDetails] = useState({
-    email: "",
-    userName: "",
+    username: "",
     password: ""
   });
+
+  const dispatch = useDispatch();
+
+  const loginUser = (userDetails) => {
+    dispatch({ type: SIGN_IN_USER, payload: userDetails });
+  };
+
   const registerProps = {
     userDetails: registerUserDetails,
-    setUserDetails: setRegisterUserDetails
+    setUserDetails: setRegisterUserDetails,
+    loginUser
   };
-  useEffect(() => {
-
-    fetch("https://dummyjson.com/auth/products", {
-      method: "GET" /* or POST/PUT/PATCH/DELETE */,
-      headers: {
-        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhdHVueTAiLCJlbWFpbCI6ImF0dW55MEBzb2h1LmNvbSIsImZpcnN0TmFtZSI6IlRlcnJ5IiwibGFzdE5hbWUiOiJNZWRodXJzdCIsImdlbmRlciI6Im1hbGUiLCJpbWFnZSI6Imh0dHBzOi8vcm9ib2hhc2gub3JnL2hpY3ZlbGRpY3RhLnBuZyIsImlhdCI6MTY5NDU5ODQ3OSwiZXhwIjoxNjk0NjAyMDc5fQ.uCeckV1BlFaig6yx9jQePwbVqAkUxcerSIUtoPi7io8",
-        "Content-Type": "application/json"
-      }
-    })
-      .then((res) => res.json())
-      .then(data=>console.log(data));
-  }, []);
+  const userDetails = useSelector((state) => state.registerUserDetails);
+ 
   return (
     <div>
       <Form {...registerProps} />
