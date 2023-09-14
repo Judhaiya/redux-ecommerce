@@ -8,7 +8,6 @@ function* loginUser(loginDetails) {
     if (!loggedInUserDetails.data) throw new Error(loggedInUserDetails.message)
     yield put(getRegisteredUserDetails(loggedInUserDetails.data));
   } catch (err) {
-    console.log(err, "error message")
     yield put(loginFailedErrors(err.message))
   }
 }

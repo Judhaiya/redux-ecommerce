@@ -7,7 +7,6 @@ const authSlice = createSlice({
     },
     reducers: {
         getRegisteredUserDetails: (state, userResponse) => {
-            console.log(state, userResponse.payload, userResponse, "state.userdetails")
             state.userDetails.data = userResponse.payload
         },
         loginFailedErrors: (state, errors) => {
