@@ -22,8 +22,6 @@ const Register = () => {
     setUserDetails: setRegisterUserDetails,
     loginUser
   };
-  const userDetails = useSelector((state) => state.registerUserDetails);
- 
   return (
     <div>
       <Form {...registerProps} />

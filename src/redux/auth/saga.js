@@ -5,11 +5,10 @@ import { loginApi } from "../../services/api";
 function* loginUser(loginDetails) {
   try {
     const loggedInUserDetails = yield loginApi(loginDetails.payload);
-    yield put(getRegisteredUserDetails(loggedInUserDetails.data));
-    console.log(loggedInUserDetails, "loginDetails");
     if (!loggedInUserDetails.data) throw new Error(loggedInUserDetails.message)
+    yield put(getRegisteredUserDetails(loggedInUserDetails.data));
   } catch (err) {
-    console.log(err,"error message")
+    console.log(err, "error message")
     yield put(loginFailedErrors(err.message))
   }
 }
