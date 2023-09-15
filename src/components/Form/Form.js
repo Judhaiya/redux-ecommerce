@@ -1,6 +1,11 @@
-import React from "react";
+import React,{useState} from "react";
+import { Snackbar } from "@mui/material";
+import { useNavigate } from "react-router";
 
 const Form = (props) => {
+  const [isOpen,setIsOpen] = useState(false)
+
+  const navigate = useNavigate();
   const updateFormField = (e) => {
     props.setUserDetails({
       ...props.userDetails,
@@ -11,23 +16,19 @@ const Form = (props) => {
   const handleSubmission = (e) => {
     e.preventDefault();
     props.loginUser(props.userDetails);
+    if (!props.loggedInUserDetails.userDetails.data) {
+      setIsOpen(true);
+      return;
+    }
+    props.setUserDetails({})
+    navigate("/home");
   };
-
   return (
     <>
       <div className="d-flex justify-content-ctr align-items-ctr flex-direction-column vertically-center ">
         <p className="font-family-abril">Logo</p>
         <form>
-          <div className="margin-vertical">
-            <div>Email</div>
-            <input
-              type="text"
-              value={props.userDetails.email}
-              onChange={(e) => updateFormField(e)}
-              name="email"
-            />
-          </div>
-          <div className="margin-vertical">
+         <div className="margin-vertical">
             <div>UserName</div>
             <input
               type="text"
@@ -47,9 +48,15 @@ const Form = (props) => {
               />
             </div>
           </div>
-          <button onClick={handleSubmission}>Register</button>
+          <button onClick={handleSubmission}>Login</button>
         </form>
       </div>
+      <Snackbar
+        open={isOpen}
+        autoHideDuration={2000}
+        onClose={() => setIsOpen(false)}
+        message={props.loggedInUserDetails.error.msg}
+      />
     </>
   );
 };
