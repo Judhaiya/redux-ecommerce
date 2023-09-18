@@ -1,38 +1,35 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Snackbar } from "@mui/material";
-import { useNavigate } from "react-router";
 
 const Form = (props) => {
-  const [isOpen,setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const [userDetails, setUserDetails] = useState({
+    username: "",
+    password: ""
+  });
 
-  const navigate = useNavigate();
   const updateFormField = (e) => {
-    props.setUserDetails({
-      ...props.userDetails,
+    setUserDetails({
+      ...userDetails,
       [e.target.name]: e.target.value
     });
   };
 
   const handleSubmission = (e) => {
     e.preventDefault();
-    props.loginUser(props.userDetails);
-    if (!props.loggedInUserDetails.userDetails.data) {
-      setIsOpen(true);
-      return;
-    }
-    props.setUserDetails({})
-    navigate("/home");
+    props.onSaveLoginDetails(userDetails, setUserDetails, setIsOpen)
+
   };
   return (
     <>
       <div className="d-flex justify-content-ctr align-items-ctr flex-direction-column vertically-center ">
         <p className="font-family-abril">Logo</p>
         <form>
-         <div className="margin-vertical">
+          <div className="margin-vertical">
             <div>UserName</div>
             <input
               type="text"
-              value={props.userDetails.username}
+              value={userDetails.username}
               onChange={(e) => updateFormField(e)}
               name="username"
             />
@@ -42,7 +39,7 @@ const Form = (props) => {
             <div>
               <input
                 type="text"
-                value={props.userDetails.password}
+                value={userDetails.password}
                 onChange={(e) => updateFormField(e)}
                 name="password"
               />
@@ -55,7 +52,7 @@ const Form = (props) => {
         open={isOpen}
         autoHideDuration={2000}
         onClose={() => setIsOpen(false)}
-        message={props.loggedInUserDetails.error.msg}
+        message={props?.loggedInUserDetails?.error?.msg}
       />
     </>
   );
