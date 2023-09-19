@@ -3,6 +3,7 @@ import { Snackbar } from "@mui/material";
 
 const Form = (props) => {
   const [isOpen, setIsOpen] = useState(false)
+  const [errorMsg, setErrorMsg] = useState("")
   const [userDetails, setUserDetails] = useState({
     username: "",
     password: ""
@@ -17,13 +18,19 @@ const Form = (props) => {
 
   const handleSubmission = (e) => {
     e.preventDefault();
-    props.onSaveLoginDetails(userDetails, setUserDetails, setIsOpen)
+    const { username, password } = userDetails
+    if (username === "" || password === "") {
+      setIsOpen(true);
+      setErrorMsg("Username or password cannot be empty")
+      return;
+    }
+    props.onSaveLoginDetails(userDetails, setUserDetails, setIsOpen, setErrorMsg)
 
   };
   return (
     <>
       <div className="d-flex justify-content-ctr align-items-ctr flex-direction-column vertically-center ">
-        <p className="font-family-abril">Logo</p>
+        <p className="font-family-abril logo-size">Logo</p>
         <form>
           <div className="margin-vertical">
             <div>UserName</div>
@@ -52,7 +59,7 @@ const Form = (props) => {
         open={isOpen}
         autoHideDuration={2000}
         onClose={() => setIsOpen(false)}
-        message={props?.loggedInUserDetails?.error?.msg}
+        message={errorMsg}
       />
     </>
   );

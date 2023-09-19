@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 import { logoutUser } from "../../redux/auth/authSlice";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -18,7 +19,8 @@ const Home = () => {
   return (
     <div>
       <Navbar userDetails={loggedInUserData} handleLogout={handleLogout} />
-      <div>Home</div>
+      <div className="d-flex justify-content-ctr">Home</div>
+      <Footer />
     </div>
   );
 };

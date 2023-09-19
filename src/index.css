@@ -1,3 +1,35 @@
+body {
+    font-family: 'Raleway', sans-serif !important;
+}
+
+input {
+    padding: 0.2rem !important;
+}
+
+.logo-size {
+    font-size: 2rem;
+}
+
+.cta-bg {
+    background-color: #EFEEEB;
+}
+
+.fw-bold {
+    font-weight: bold;
+}
+
+.cta-padding-extrasmall {
+    padding: 0.4rem;
+}
+
+.outline-0 {
+    outline: none;
+}
+
+.border-0 {
+    border: none;
+}
+
 .font-family-abril {
     font-family: 'Abril Fatface', cursive;
 }
@@ -5,18 +37,23 @@
 .d-flex {
     display: flex;
 }
+
 .justify-content-space-btw {
     justify-content: space-between;
 }
-.justify-content-ctr{
+
+.justify-content-ctr {
     justify-content: center;
 }
-.align-items-ctr{
-    align-items:center;
+
+.align-items-ctr {
+    align-items: center;
 }
-.flex-direction-column{
+
+.flex-direction-column {
     flex-direction: column;
 }
+
 .padding-horizontal-sm {
     padding: 0.5rem;
 }
@@ -24,15 +61,19 @@
 .padding-2rem {
     padding: 2rem;
 }
+
 .column-gap-sm {
     column-gap: 0.6rem;
 }
+
 .padding-leftRight {
     padding: 0 2rem 0;
 }
-.margin-vertical{
-    margin:2rem 0;
+
+.margin-vertical {
+    margin: 2rem 0;
 }
-.height-100vh{
-    height:100vh;
+
+.height-100vh {
+    height: 100vh;
 }

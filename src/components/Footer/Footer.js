@@ -1,8 +1,9 @@
 import React from "react";
+import "./Footer.css"
 
 const Footer = () => {
   return (
-    <div className="d-flex justify-content-space-btw padding-leftRight">
+    <div className="d-flex justify-content-space-btw padding-leftRight footer-bg">
       <div>
         <h3 className="font-family-abril">Logo</h3>
         <div>

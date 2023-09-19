@@ -12,27 +12,24 @@ const Register = () => {
   const navigate = useNavigate()
   const loggedInUserDetails = useSelector((state) => state.auth);
 
-  const onSaveLoginDetails = async (userDetails, setUserDetails, setIsOpen) => {
-
+  const onSaveLoginDetails = async (userDetails, setUserDetails, setIsOpen, setErrorMsg) => {
     dispatch({ type: SIGN_IN_USER, payload: { userDetails } });
-
     if (!loggedInUserDetails.userDetails.data) {
-      console.log("a");
       setIsOpen(true);
+      setErrorMsg(loggedInUserDetails.error.msg)
       return;
     }
-    console.log("b");
     setUserDetails({})
     navigate("/home");
   };
 
   const registerProps = {
     onSaveLoginDetails,
-    loggedInUserDetails
   };
 
   return (
     <div>
+
       <Form {...registerProps} />
     </div>
   );
