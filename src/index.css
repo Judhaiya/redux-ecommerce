@@ -1,5 +1,11 @@
+:root{
+    --cta-bg:#EFEEEB;
+}
+p{
+    margin-bottom:0 !important;
+}
 body {
-    font-family: 'Raleway', sans-serif !important;
+    font-family: 'Poppins', sans-serif !important;
 }
 
 input {
@@ -11,7 +17,7 @@ input {
 }
 
 .cta-bg {
-    background-color: #EFEEEB;
+    background-color: var(--cta-bg);
 }
 
 .fw-bold {
@@ -21,7 +27,9 @@ input {
 .cta-padding-extrasmall {
     padding: 0.4rem;
 }
-
+.padding-small{
+    padding:0.6rem;
+}
 .outline-0 {
     outline: none;
 }
@@ -29,7 +37,9 @@ input {
 .border-0 {
     border: none;
 }
-
+.text-align-left{
+    text-align:left;
+}
 .font-family-abril {
     font-family: 'Abril Fatface', cursive;
 }
@@ -45,15 +55,24 @@ input {
 .justify-content-ctr {
     justify-content: center;
 }
-
+.skeleton-grey{
+    background-color: #d3d3d3;
+}
 .align-items-ctr {
     align-items: center;
 }
-
+.text-ctr{
+    text-align:center;
+}
+.dead-center{
+    transform:translate(-50%,50%)
+}
 .flex-direction-column {
     flex-direction: column;
 }
-
+.margin-sm{
+    margin:0.5rem;
+}
 .padding-horizontal-sm {
     padding: 0.5rem;
 }

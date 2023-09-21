@@ -1,30 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import { Snackbar } from "@mui/material";
 
 const Form = (props) => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [errorMsg, setErrorMsg] = useState("")
-  const [userDetails, setUserDetails] = useState({
-    username: "",
-    password: ""
-  });
-
-  const updateFormField = (e) => {
-    setUserDetails({
-      ...userDetails,
+  
+ const updateFormField = (e) => {
+    props.setUserDetails({
+      ...props.userDetails,
       [e.target.name]: e.target.value
     });
   };
 
   const handleSubmission = (e) => {
     e.preventDefault();
-    const { username, password } = userDetails
+    const { username, password } = props.userDetails
     if (username === "" || password === "") {
-      setIsOpen(true);
-      setErrorMsg("Username or password cannot be empty")
+      props.setIsOpen(true);
+      props.setErrorMsg("Username or password cannot be empty")
       return;
     }
-    props.onSaveLoginDetails(userDetails, setUserDetails, setIsOpen, setErrorMsg)
+    props.onSaveLoginDetails()
 
   };
   return (
@@ -35,8 +29,9 @@ const Form = (props) => {
           <div className="margin-vertical">
             <div>UserName</div>
             <input
+              className="input-border"
               type="text"
-              value={userDetails.username}
+              value={props.userDetails.username}
               onChange={(e) => updateFormField(e)}
               name="username"
             />
@@ -45,21 +40,24 @@ const Form = (props) => {
             <div>Password</div>
             <div>
               <input
+               className="input-border"
                 type="text"
-                value={userDetails.password}
+                value={props.userDetails.password}
                 onChange={(e) => updateFormField(e)}
                 name="password"
               />
             </div>
           </div>
-          <button onClick={handleSubmission}>Login</button>
+          <div className="d-flex justify-content-ctr">
+          <button className="cta-bg fw-bold outline-0 border-0 login-btn-padding" onClick={handleSubmission}>Login</button>
+          </div>
         </form>
       </div>
       <Snackbar
-        open={isOpen}
+        open={props.isOpen}
         autoHideDuration={2000}
-        onClose={() => setIsOpen(false)}
-        message={errorMsg}
+        onClose={() => props.setIsOpen(false)}
+        message={props.errorMsg}
       />
     </>
   );

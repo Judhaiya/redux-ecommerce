@@ -1,11 +1,10 @@
 import { put, takeEvery } from "redux-saga/effects";
 import { getRegisteredUserDetails, loginFailedErrors } from "./authSlice";
-import { loginApi } from "../../services/api";
+import { loginApi } from "../../services/authApi";
 
 function* loginUser(loginDetails) {
-  const { userDetails } = loginDetails.payload
-  try {
-    const loggedInUserDetails = yield loginApi(userDetails);
+ try {
+    const loggedInUserDetails = yield loginApi(loginDetails.payload);
     if (loggedInUserDetails.message) throw new Error(loggedInUserDetails.message);
     yield put(getRegisteredUserDetails(loggedInUserDetails));
 

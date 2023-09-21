@@ -6,6 +6,7 @@ import {
 import storage from "redux-persist/lib/storage";
 
 import authReducer from "../redux/auth/authSlice";
+import productReducer from "../redux/products/productSlice";
 import { rootSagas } from "./rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
@@ -16,7 +17,8 @@ const authPersistsConfig = {
   storage
 };
 const rootReducer = combineReducers({
-  auth: persistReducer(authPersistsConfig, authReducer)
+  auth: persistReducer(authPersistsConfig, authReducer),
+  products:productReducer
 });
 export const store = configureStore({
   reducer: rootReducer,
