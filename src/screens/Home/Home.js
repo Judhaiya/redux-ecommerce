@@ -1,5 +1,4 @@
-import React,{useEffect} from "react";
-import { sampleProducts } from "../../utilities/data";
+import React, { useEffect } from "react";
 
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
@@ -14,16 +13,17 @@ import "./Home.css";
 
 const Home = () => {
   const loggedInUserData = useSelector((state) => state.auth.userDetails.data);
-  const productsList = useSelector((state)=>state.products.productsList)
+  const productsList = useSelector((state) => state.products.productsList)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = () => {
     dispatch(logoutUser());
     navigate("/");
   };
-   useEffect(()=>{
-    dispatch({type:GET_ALL_PRODUCTS,payload:loggedInUserData.token})
-   },[])
+  useEffect(() => {
+    dispatch({ type: GET_ALL_PRODUCTS, payload: loggedInUserData.token })
+  }, [])
+
   return (
     <div>
       <Navbar userDetails={loggedInUserData} handleLogout={handleLogout} />
@@ -32,7 +32,7 @@ const Home = () => {
         <h4 className="hero-txt-sideline text-ctr "> GET 30% OFF </h4>
       </div>
       <div className="">
-        <ProductList sampleProducts={sampleProducts} productsList={productsList}/>
+        <ProductList productsList={productsList} />
       </div>
       <Footer />
     </div>
