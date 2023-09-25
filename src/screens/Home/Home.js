@@ -28,8 +28,8 @@ const Home = () => {
     <div>
       <Navbar userDetails={loggedInUserData} handleLogout={handleLogout} />
       {/* Banner  */}
-      <div className="skeleton-grey width-100 hght-500px d-flex align-items-ctr justify-content-ctr">
-        <h4 className="hero-txt-sideline text-ctr "> GET 30% OFF </h4>
+      <div className="skeleton-grey width-100 hght-500px display-flex align-items-center justify-content-center">
+        <h4 className="hero-txt-sideline text-center "> GET 30% OFF </h4>
       </div>
       <div className="">
         <ProductList productsList={productsList} />

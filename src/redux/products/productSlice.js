@@ -5,7 +5,8 @@ const productSlice = createSlice(
         name:"products",
         initialState:{
             productsList:[],
-            error:{msg:null}
+            error:{msg:null},
+            singleProductList:{}
         },
         reducers:{
             fetchProductsList:(state,action)=>{
@@ -13,10 +14,13 @@ const productSlice = createSlice(
             },
             fetchProductsFailed:(state,action)=>{
               return {...state,error:{msg:action.payload}}
+            },
+            fetchSingleProductDetails:(state,action)=>{
+                  return {...state,singleProductList:action.payload}
             }
         }
     }
 )
 
-export const {fetchProductsList} = productSlice.actions;
+export const {fetchProductsList,fetchSingleProductDetails} = productSlice.actions;
 export default productSlice.reducer;

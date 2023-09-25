@@ -23,7 +23,7 @@ const Form = (props) => {
   };
   return (
     <>
-      <div className="d-flex justify-content-ctr align-items-ctr flex-direction-column vertically-center ">
+      <div className="display-flex justify-content-center align-items-center flex-direction-column vertically-center ">
         <p className="font-family-abril logo-size">Logo</p>
         <form>
           <div className="margin-vertical">
@@ -48,7 +48,7 @@ const Form = (props) => {
               />
             </div>
           </div>
-          <div className="d-flex justify-content-ctr">
+          <div className="display-flex justify-content-center">
           <button className="cta-bg fw-bold outline-0 border-0 login-btn-padding" onClick={handleSubmission}>Login</button>
           </div>
         </form>

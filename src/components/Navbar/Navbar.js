@@ -9,19 +9,19 @@ import "./Navbar.css"
 const Navbar = (props) => {
   const { userDetails, handleLogout } = props
   return (
-    <div className="d-flex justify-content-space-btw padding-2rem">
+    <div className="display-flex justify-content-space-btw padding-2rem">
       <div className="font-family-abril logo-size">Logo</div>
-      <div className="d-flex align-items-ctr">
+      <div className="display-flex align-items-center">
         <input type="text" />
         <button className="cta-bg fw-bold outline-0 border-0 search-icon-btn "><SearchIcon /></button>
       </div>
-      <div className="d-flex column-gap-sm align-items-ctr">
+      <div className="display-flex column-gap-sm align-items-center">
         <ShoppingCartIcon />
         <div>
           {userDetails?.token ? (
-            <div className="d-flex column-gap-sm align-items-ctr">
+            <div className="display-flex column-gap-sm align-items-center">
               <div>{userDetails.username}</div>
-              <button className="cta-bg fw-bold outline-0 border-0  cta-padding-extrasmall  d-flex column-gap-sm align-items-ctr" onClick={() => handleLogout()}>
+              <button className="cta-bg fw-bold outline-0 border-0  cta-padding-extrasmall  display-flex column-gap-sm align-items-center" onClick={() => handleLogout()}>
                 <span><PersonOutline /></span>
                 Logout
               </button>
