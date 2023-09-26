@@ -101,11 +101,18 @@ tr {
 .padding-2rem {
   padding: 2rem;
 }
-
+.column-gap-3rem{
+  column-gap:3rem;
+}
+.column-gap-1rem{
+  column-gap:1rem
+}
 .column-gap-sm {
   column-gap: 0.6rem;
 }
-
+.transform-y-50px{
+  transform:translateY(50px)
+}
 .padding-leftRight {
   padding: 0 2rem 0;
 }
@@ -134,4 +141,14 @@ tr {
 }
 .default-bg-grey{
   background-color:#d3d3d3 ;
+}
+.flex-direction-column{
+  flex-direction:column;
+}
+.row-gap-sm{
+  row-gap:0.7rem;
+}
+
+.text-transform-capitalize{
+  text-transform: capitalize;
 }

@@ -1,4 +1,4 @@
-import { put, takeLatest } from "redux-saga/effects";
+import { put, takeEvery } from "redux-saga/effects";
 import { getProductsApi,getSingleProductApi } from "../../services/productsApi";
 import { fetchProductsList,fetchSingleProductDetails } from "./productSlice";
 
@@ -22,6 +22,6 @@ function* getSingleProductDetails(action){
 }
 
 export function* getAllProducts() {
-    yield takeLatest("GET_ALL_PRODUCTS", getProductsList)
-    yield takeLatest("GET_SINGLE_PRODUCT", getSingleProductDetails)
+    yield takeEvery("GET_ALL_PRODUCTS", getProductsList)
+    yield takeEvery("GET_SINGLE_PRODUCT", getSingleProductDetails)
 }

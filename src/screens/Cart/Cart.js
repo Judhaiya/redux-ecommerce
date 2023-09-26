@@ -10,7 +10,7 @@ const Cart = () => {
   const loggedInUserData = useSelector((state) => state.auth.userDetails.data);
   const dispatch = useDispatch();
  const navigate = useNavigate()
- 
+
   useEffect(() => {
     dispatch({ type: GET_CART_ITEMS, payload: loggedInUserData.token });
   }, []);
@@ -22,8 +22,7 @@ const Cart = () => {
     setTimeout(()=>{
       navigate("/")
     },500)
-    
-  }
+     }
 
   return (
     <div

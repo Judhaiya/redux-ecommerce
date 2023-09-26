@@ -4,9 +4,12 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { PersonOutline } from "@mui/icons-material";
 import SearchIcon from '@mui/icons-material/Search';
 
+import { useNavigate } from "react-router";
+
 import "./Navbar.css"
 
 const Navbar = (props) => {
+  const navigate = useNavigate()
   const { userDetails, handleLogout } = props
   return (
     <div className="display-flex justify-content-space-btw padding-2rem">
@@ -16,7 +19,7 @@ const Navbar = (props) => {
         <button className="cta-bg fw-bold outline-0 border-0 search-icon-btn "><SearchIcon /></button>
       </div>
       <div className="display-flex column-gap-sm align-items-center">
-        <ShoppingCartIcon />
+        <ShoppingCartIcon onClick={()=>navigate("/cart")}/>
         <div>
           {userDetails?.token ? (
             <div className="display-flex column-gap-sm align-items-center">

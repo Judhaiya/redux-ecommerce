@@ -1,23 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ProductList.css";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { GET_SINGLE_PRODUCT } from "../../redux/products/actions";
+import { Snackbar } from "@mui/material";
 
-const ProductList = ({ productsList }) => {
+const ProductList = ({ productsList, addItemToCart }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const token =  useSelector((state) => state?.auth?.userDetails?.data?.token);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const token = useSelector((state) => state?.auth?.userDetails?.data?.token);
 
   const getSingleProductList = (id) => {
-    dispatch({ type: GET_SINGLE_PRODUCT, payload: { id,token } });
-    navigate(`/singleProduct/${id}`)
+    dispatch({ type: GET_SINGLE_PRODUCT, payload: { id, token } });
+    navigate(`/singleProduct/${id}`);
   };
-  const goToCartPage = (e)=>{
-  e.stopPropagation()
-  navigate("/cart")
-  }
+  const goToCartPage = (e) => {
+    e.stopPropagation();
+    setIsOpen(true);
+    addItemToCart();
+  };
 
   return (
     <div className="product-list-container">
@@ -50,6 +54,12 @@ const ProductList = ({ productsList }) => {
           </div>
         </div>
       ))}
+      <Snackbar
+        open={isOpen}
+        autoHideDuration={500}
+        onClose={() => setIsOpen(false)}
+        message="product has been added to the cart successfully"
+      />
     </div>
   );
 };
