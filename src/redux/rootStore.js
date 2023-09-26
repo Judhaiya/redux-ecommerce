@@ -7,18 +7,24 @@ import storage from "redux-persist/lib/storage";
 
 import authReducer from "../redux/auth/authSlice";
 import productReducer from "../redux/products/productSlice";
+import cartReducer from "../redux/cart/cartSlice";
 import { rootSagas } from "./rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
 
-const authPersistsConfig = {
+const authPersistConfig = {
   key: "auth",
   blacklist: ["error"],
   storage
 };
+const cartPersistConfig={
+  key:"cart",
+  storage
+}
 const rootReducer = combineReducers({
-  auth: persistReducer(authPersistsConfig, authReducer),
-  products:productReducer
+  auth: persistReducer(authPersistConfig, authReducer),
+  products:productReducer,
+  cart:persistReducer(cartPersistConfig,cartReducer)
 });
 export const store = configureStore({
   reducer: rootReducer,

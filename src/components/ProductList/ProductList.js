@@ -12,14 +12,19 @@ const ProductList = ({ productsList }) => {
 
   const getSingleProductList = (id) => {
     dispatch({ type: GET_SINGLE_PRODUCT, payload: { id,token } });
+    navigate(`/singleProduct/${id}`)
   };
+  const goToCartPage = (e)=>{
+  e.stopPropagation()
+  navigate("/cart")
+  }
 
   return (
     <div className="product-list-container">
       {productsList?.products?.map((product) => (
         <div
           key={product?.id}
-          className="card-shadow"
+          className="card-shadow cursor-pointer"
           onClick={() => getSingleProductList(product.id)}
         >
           <div className="img-placeholder skeleton-grey">
@@ -38,7 +43,7 @@ const ProductList = ({ productsList }) => {
             </p>
             <button
               className="margin-vertical cta-bg fw-bold outline-0 border-0 padding-small box-shadow-grey"
-              onClick={() => navigate("/cart")}
+              onClick={goToCartPage}
             >
               ADD TO CART
             </button>

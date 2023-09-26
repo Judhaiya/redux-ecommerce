@@ -48,6 +48,9 @@ tr {
 .padding-medium {
   padding: 0.8rem;
 }
+.cursor-pointer{
+  cursor:pointer;
+}
 .outline-0 {
   outline: none;
 }
@@ -128,4 +131,7 @@ tr {
 }
 .margin-top-sm{
   margin-top:0.8rem;
+}
+.default-bg-grey{
+  background-color:#d3d3d3 ;
 }

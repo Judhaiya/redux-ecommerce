@@ -1,8 +1,7 @@
-const PRODUCTS_API_URL = "https://dummyjson.com/auth/products";
-
+import { BASE_API_URL } from "./baseUrl"
 
 export const getProductsApi = async (token)=>{
-  const response = await fetch(PRODUCTS_API_URL, {
+  const response = await fetch(`${BASE_API_URL}/auth/products`, {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`, 
@@ -13,7 +12,7 @@ export const getProductsApi = async (token)=>{
 }
 export const getSingleProductApi = async(payload)=>{
   const {id,token} = payload;
-  const response = await fetch(`${PRODUCTS_API_URL}/${id}`,{
+  const response = await fetch(`${BASE_API_URL}/auth/products/${id}`,{
     method:"GET",
     headers: {
       'Authorization': `Bearer ${token}`, 

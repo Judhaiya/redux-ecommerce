@@ -22,7 +22,7 @@ const authSlice = createSlice({
          }
          return updatedState
         },
-        logoutUser: (state, payload) => {
+        logoutUser: (state) => {
             state.userDetails.data.token = null
         },
         }

@@ -1,6 +1,7 @@
-export const LOGIN_API_URL = "https://dummyjson.com/auth/login"
+import { BASE_API_URL } from "./baseUrl";
+
 export const loginApi = async (payload) => {
-    const response = await fetch(LOGIN_API_URL,{
+    const response = await fetch(`${BASE_API_URL}/auth/login`,{
         method:"post",
         headers: { 'Content-Type': 'application/json' },
         body:JSON.stringify(payload),
