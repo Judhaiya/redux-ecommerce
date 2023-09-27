@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { GET_SINGLE_PRODUCT } from "../../redux/products/actions";
+import { ADD_TO_CART } from "../../redux/cart/actions";
 import { useParams } from "react-router";
 
 const ProductDescription = () => {
@@ -15,7 +16,22 @@ const ProductDescription = () => {
   const productDetails = useSelector(
     (state) => state.products.singleProductList
   );
-
+  const addToCart = ()=>{
+    let cartItem = {
+      userId: 1,
+      products: [
+        {
+          id: 1,
+          quantity: 1
+        },
+        {
+          id: 50,
+          quantity: 2
+        }
+      ]
+    }
+    dispatch({type:ADD_TO_CART,payload:{cartItem,token}})
+  }
   return (
     <div>
       {/* <p>{productDetails?.title}</p> */}
@@ -30,7 +46,7 @@ const ProductDescription = () => {
           <div className="text-transform-capitalize font-size-12px">{productDetails?.category}</div>
           <div className="font-size-14px">{productDetails?.description}</div>
           <div className="font-size-14px">rating: {productDetails?.rating}</div>
-          <div><button className="fw-bold font-size-14px cta-bg fw-bold outline-0 border-0 padding-small box-shadow-grey">ADD TO CART</button></div>
+          <div><button className="fw-bold font-size-14px cta-bg fw-bold outline-0 border-0 padding-small box-shadow-grey" onClick={addToCart}>ADD TO CART</button></div>
         </div>
       </div>
 }

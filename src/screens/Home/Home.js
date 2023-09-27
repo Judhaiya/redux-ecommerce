@@ -43,7 +43,7 @@ const Home = () => {
         ]
       }
     };
-    dispatch({ type: ADD_TO_CART, action: payload });
+    dispatch({ type: ADD_TO_CART,  payload });
   };
 
 
