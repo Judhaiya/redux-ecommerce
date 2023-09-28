@@ -2,8 +2,7 @@ import React from "react";
 import { Snackbar } from "@mui/material";
 
 const Form = (props) => {
-  
- const updateFormField = (e) => {
+  const updateFormField = (e) => {
     props.setUserDetails({
       ...props.userDetails,
       [e.target.name]: e.target.value
@@ -12,14 +11,13 @@ const Form = (props) => {
 
   const handleSubmission = (e) => {
     e.preventDefault();
-    const { username, password } = props.userDetails
+    const { username, password } = props.userDetails;
     if (username === "" || password === "") {
       props.setIsOpen(true);
-      props.setErrorMsg("Username or password cannot be empty")
+      props.setErrorMsg("Username or password cannot be empty");
       return;
     }
-    props.onSaveLoginDetails()
-
+    props.onSaveLoginDetails();
   };
   return (
     <>
@@ -30,6 +28,7 @@ const Form = (props) => {
             <div>UserName</div>
             <input
               className="input-border"
+              data-cy="username-input"
               type="text"
               value={props.userDetails.username}
               onChange={(e) => updateFormField(e)}
@@ -40,16 +39,23 @@ const Form = (props) => {
             <div>Password</div>
             <div>
               <input
-               className="input-border"
+                className="input-border"
+                data-cy="password-input"
                 type="text"
-                value={props.userDetails.password}
+                value={props?.userDetails?.password}
                 onChange={(e) => updateFormField(e)}
                 name="password"
               />
             </div>
           </div>
           <div className="display-flex justify-content-center">
-          <button className="cta-bg fw-bold outline-0 border-0 login-btn-padding" onClick={handleSubmission}>Login</button>
+            <button
+             data-cy="btn-submit"
+              className="cta-bg fw-bold outline-0 border-0 login-btn-padding"
+              onClick={handleSubmission}
+            >
+              Login
+            </button>
           </div>
         </form>
       </div>

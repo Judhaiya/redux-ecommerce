@@ -5,7 +5,7 @@ import Form from "../../../components/Form/Form";
 import "./Login.css";
 import { SIGN_IN_USER } from "../../../redux/auth/actions";
 
-import { useNavigate,useLocation } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 
 const Register = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,33 +17,31 @@ const Register = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation()
+  const location = useLocation();
   const userdata = useSelector((state) => state.auth);
 
-
- useEffect(() => {
-   if(userdata.error.msg){
-    setIsOpen(true);
-    setErrorMsg(userdata.error.msg);
-    return;
-    }
-    else if (userdata?.userDetails?.data?.token) {
+  useEffect(() => {
+    if (userdata.error.msg) {
+      setIsOpen(true);
+      setErrorMsg(userdata.error.msg);
+      return;
+    } else if (userdata?.userDetails?.data?.token) {
       setUserDetails({ username: "", password: "" });
       navigate("/home");
       return;
     }
-    setIsOpen(false)
+    setIsOpen(false);
   }, [userdata]);
 
-  useEffect(()=>{
+  useEffect(() => {
     if (userdata?.userDetails?.data?.token && location.pathname !== "/") {
-     navigate(-1)
+      navigate(-1);
     }
-  },[userdata?.userDetails?.data?.token])
+  }, [userdata?.userDetails?.data?.token]);
 
- const onSaveLoginDetails = async () => {
+  const onSaveLoginDetails = async () => {
     dispatch({ type: SIGN_IN_USER, payload: userDetails });
-     };
+  };
 
   const registerProps = {
     onSaveLoginDetails,

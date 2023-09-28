@@ -43,10 +43,8 @@ const Home = () => {
         ]
       }
     };
-    dispatch({ type: ADD_TO_CART,  payload });
+    dispatch({ type: ADD_TO_CART, payload });
   };
-
-
   return (
     <div>
       <Navbar userDetails={loggedInUserData} handleLogout={handleLogout} />
