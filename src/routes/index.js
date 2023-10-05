@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router";
 
-import PrivateRoute from "./PrivateRoute";
 
+import PrivateRoute from "./PrivateRoute";
 import Login from "../screens/Auth/Login/Login";
 import Home from "../screens/Home/Home";
 import Cart from "../screens/Cart/Cart";

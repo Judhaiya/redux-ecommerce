@@ -23,7 +23,12 @@
     "react-scripts": "5.0.1",
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.2.3",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "workbox-core": "^7.0.0",
+    "workbox-expiration": "^7.0.0",
+    "workbox-precaching": "^7.0.0",
+    "workbox-routing": "^7.0.0",
+    "workbox-strategies": "^7.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -52,7 +57,6 @@
   },
   "devDependencies": {
     "cypress": "^13.2.0",
-    "eslint": "^8.50.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-n": "^16.1.0",
