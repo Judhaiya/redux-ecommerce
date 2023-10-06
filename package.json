@@ -24,6 +24,7 @@
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.2.3",
     "web-vitals": "^2.1.4",
+    "workbox-cacheable-response": "^7.0.0",
     "workbox-core": "^7.0.0",
     "workbox-expiration": "^7.0.0",
     "workbox-precaching": "^7.0.0",
