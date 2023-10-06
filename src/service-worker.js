@@ -11,8 +11,7 @@ import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
-import { StaleWhileRevalidate,NetworkFirst } from 'workbox-strategies';
-import {CacheableResponsePlugin} from 'workbox-cacheable-response';
+import { StaleWhileRevalidate,NetworkFirst,CacheFirst } from 'workbox-strategies';
 
 clientsClaim();
 
@@ -64,13 +63,19 @@ registerRoute(
 // }
 // );
 registerRoute(
-  ({url}) => url.pathname.startsWith('/auth/products'),
-  new NetworkFirst({
+  ({url}) => url.pathname === '/auth/products',
+  new CacheFirst({
     cacheName:"products-cache"
   })
 )
 
-registerRoute(({url})=>  new RegExp('https://i.dummyjson.com/data/products/.*\\.jpg'),new NetworkFirst())
+registerRoute(new RegExp('https://i.dummyjson.com/data/products/.*\\.jpg'),new CacheFirst())
+registerRoute(
+  ({url}) => url.pathname === '/auth/products/search',
+  new NetworkFirst({
+    cacheName:"search-results-tmp-cache"
+  })
+)
 // This allows the web app to trigger skipWaiting via
 // registration.waiting.postMessage({type: 'SKIP_WAITING'})
 // self.addEventListener('message', (event) => {

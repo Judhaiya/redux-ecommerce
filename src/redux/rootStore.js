@@ -8,6 +8,7 @@ import storage from "redux-persist/lib/storage";
 import authReducer from "../redux/auth/authSlice";
 import productReducer from "../redux/products/productSlice";
 import cartReducer from "../redux/cart/cartSlice";
+import searchReducer from "../redux/search/searchSlice";
 import { rootSagas } from "./rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
