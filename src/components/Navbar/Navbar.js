@@ -15,7 +15,6 @@ const Navbar = (props) => {
   const [searchValue,setSearchValue] = useState("")
 
  const submitSearchResult = () =>{
-  console.log("clicked")
   if  ( searchValue === "") return 
   searchResults(searchValue)
  }
@@ -24,19 +23,20 @@ const Navbar = (props) => {
     <div className="display-flex justify-content-space-btw padding-2rem">
       <div className="font-family-abril logo-size">Logo</div>
       <div className="display-flex align-items-center">
-        <input type="text" onChange={(e)=>setSearchValue(e.target.value)} value={searchValue}/>
-        <button className="cta-bg fw-bold outline-0 border-0 search-icon-btn " onClick={submitSearchResult}>
+        <input type="text" data-cy="search-input-box" onChange={(e)=>setSearchValue(e.target.value)} value={searchValue}/>
+        <button className="cta-bg fw-bold outline-0 border-0 search-icon-btn" data-cy="search-button" onClick={submitSearchResult}>
           <SearchIcon />
         </button>
       </div>
       <div className="display-flex column-gap-sm align-items-center">
-        <ShoppingCartIcon onClick={() => navigate("/cart")} />
+        <ShoppingCartIcon onClick={() => navigate("/cart")} data-cy="shopping-cart" />
         <div>
           {userDetails?.token ? (
             <div className="display-flex column-gap-sm align-items-center">
               <div data-cy="username">{userDetails.username}</div>
               <button
                 className="cta-bg fw-bold outline-0 border-0  cta-padding-extrasmall  display-flex column-gap-sm align-items-center"
+                data-cy="logout-button"
                 onClick={() => handleLogout()}
               >
                 <span>

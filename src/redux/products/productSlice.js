@@ -6,14 +6,18 @@ const productSlice = createSlice(
         initialState:{
             productsList:[],
             error:{msg:null},
-            singleProductList:{}
+            singleProductList:{},
+            isLoading:false
         },
         reducers:{
+          fetchProductsLoading:(state,action)=>{
+             return {...state,isLoading:true}
+          },
             fetchProductsList:(state,action)=>{
-              return {...state,productsList:action.payload}
+              return {...state,isLoading:false,productsList:action.payload}
             },
             fetchProductsFailed:(state,action)=>{
-              return {...state,error:{msg:action.payload}}
+              return {...state,isLoading:false,error:{msg:action.payload}}
             },
             fetchSingleProductDetails:(state,action)=>{
                   return {...state,singleProductList:action.payload}

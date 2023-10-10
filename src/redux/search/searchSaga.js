@@ -4,7 +4,6 @@ import {fetchProductsList} from "../products/productSlice";
 function* fetchUserSearchedProducts(action){
   try{
   const searchedProductDetails = yield  getUserSearchedProducts(action.payload);
-  console.log(searchedProductDetails,"searchProducts details")
   yield put (fetchProductsList(searchedProductDetails));
 }catch(error){
  console.error(error,"error while searching product");

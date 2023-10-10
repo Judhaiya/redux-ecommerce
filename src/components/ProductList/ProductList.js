@@ -38,8 +38,8 @@ const ProductList = ({ productsList, addItemToCart }) => {
               alt=""
             />
           </div>
-          <div className="text-align-left margin-sm padding-small">
-            <p>{product?.category}</p>
+          <div className="text-align-left margin-sm padding-small" >
+            <p data-cy="product-category">{product?.category}</p>
             <h5>{product?.title}</h5>
             <p>{product.rating}</p>
             <p>
@@ -48,6 +48,7 @@ const ProductList = ({ productsList, addItemToCart }) => {
             <button
               className="margin-vertical cta-bg fw-bold outline-0 border-0 padding-small box-shadow-grey"
               onClick={goToCartPage}
+              data-cy="cart-button"
             >
               ADD TO CART
             </button>
@@ -55,6 +56,7 @@ const ProductList = ({ productsList, addItemToCart }) => {
         </div>
       ))}
       <Snackbar
+       data-cy="snackbar"
         open={isOpen}
         autoHideDuration={500}
         onClose={() => setIsOpen(false)}
