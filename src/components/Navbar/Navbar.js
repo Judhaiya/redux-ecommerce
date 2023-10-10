@@ -17,7 +17,6 @@ const Navbar = (props) => {
  const submitSearchResult = () =>{
   console.log("clicked")
   if  ( searchValue === "") return 
-  console.log(searchResults,"what is it")
   searchResults(searchValue)
  }
 

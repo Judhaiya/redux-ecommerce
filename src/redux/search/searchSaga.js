@@ -1,6 +1,6 @@
 import { put, takeEvery } from "redux-saga/effects";
 import {getUserSearchedProducts} from "../../services/searchApi";
-import {fetchProductsList,fetchProductsFailed} from "../products/productSlice";
+import {fetchProductsList} from "../products/productSlice";
 function* fetchUserSearchedProducts(action){
   try{
   const searchedProductDetails = yield  getUserSearchedProducts(action.payload);

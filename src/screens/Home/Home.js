@@ -17,9 +17,7 @@ const Home = () => {
   const loggedInUserData = useSelector((state) => state.auth.userDetails.data);
   const productsList = useSelector((state) => state.products.productsList);
 
- useEffect(()=>{
-   console.log(productsList,"product list")
- },[productsList])
+
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
