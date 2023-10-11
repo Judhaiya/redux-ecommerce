@@ -1,4 +1,4 @@
-describe("check login happens successfully", () => {
+describe("testing login functionality", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/");
   });
@@ -16,7 +16,7 @@ describe("check login happens successfully", () => {
   });
 });
 
-describe("check if search works", () => {
+describe("testing search functionality", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/");
     cy.get('[data-cy="username-input"]').type("kminchelle");
@@ -42,7 +42,7 @@ describe("check if search works", () => {
   
 });
 
-describe("navigation to cart page", () => {
+describe("testing navigation to cart page", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/");
     cy.get('[data-cy="username-input"]').type("kminchelle");
@@ -55,7 +55,7 @@ describe("navigation to cart page", () => {
   });
 });
 
-describe("navigation to login page after logging out", () => {
+describe("testing navigation to login page after logging out", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/");
     cy.get('[data-cy="username-input"]').type("kminchelle");
