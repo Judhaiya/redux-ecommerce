@@ -10,9 +10,9 @@ const ProductDescription = () => {
   const token = useSelector((state) => state.auth.userDetails.data.token);
 
   useEffect(() => {
-    dispatch({ type: GET_SINGLE_PRODUCT, payload: { id, token } });
-  }, []);
-   
+  dispatch({ type: GET_SINGLE_PRODUCT, payload: { id, token } });
+}, []); 
+
   const productDetails = useSelector(
     (state) => state.products.singleProductList
   );
@@ -34,7 +34,6 @@ const ProductDescription = () => {
   }
   return (
     <div>
-      {/* <p>{productDetails?.title}</p> */}
       {Object.keys(productDetails).length > 0 &&
       <div className="display-flex justify-content-center align-items-center column-gap-3rem transform-y-50px">
         <div>

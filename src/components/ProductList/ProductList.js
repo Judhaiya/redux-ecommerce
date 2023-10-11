@@ -14,7 +14,6 @@ const ProductList = ({ productsList, addItemToCart }) => {
   const token = useSelector((state) => state?.auth?.userDetails?.data?.token);
 
   const getSingleProductList = (id) => {
-    dispatch({ type: GET_SINGLE_PRODUCT, payload: { id, token } });
     navigate(`/singleProduct/${id}`);
   };
   const goToCartPage = (e) => {
@@ -28,6 +27,7 @@ const ProductList = ({ productsList, addItemToCart }) => {
       {productsList?.products?.map((product) => (
         <div
           key={product?.id}
+          data-cy="single-product-card"
           className="card-shadow cursor-pointer"
           onClick={() => getSingleProductList(product.id)}
         >
@@ -39,8 +39,8 @@ const ProductList = ({ productsList, addItemToCart }) => {
             />
           </div>
           <div className="text-align-left margin-sm padding-small" >
-            <p data-cy="product-category">{product?.category}</p>
-            <h5>{product?.title}</h5>
+            <p>{product?.category}</p>
+            <h5 data-cy="product-title">{product?.title}</h5>
             <p>{product.rating}</p>
             <p>
               ${product?.price} <span>({product?.discount}% OFF)</span>
