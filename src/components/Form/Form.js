@@ -23,7 +23,7 @@ const Form = (props) => {
     <>
       <div className="display-flex justify-content-center align-items-center flex-direction-column vertically-center ">
         <p className="font-family-abril logo-size">Logo</p>
-        <form>
+        <form onSubmit={handleSubmission} onChange={(e) => updateFormField(e)}>
           <div className="margin-vertical">
             <div>UserName</div>
             <input
@@ -31,7 +31,6 @@ const Form = (props) => {
               data-cy="username-input"
               type="text"
               value={props.userDetails.username}
-              onChange={(e) => updateFormField(e)}
               name="username"
             />
           </div>
@@ -43,7 +42,6 @@ const Form = (props) => {
                 data-cy="password-input"
                 type="text"
                 value={props?.userDetails?.password}
-                onChange={(e) => updateFormField(e)}
                 name="password"
               />
             </div>
@@ -51,8 +49,8 @@ const Form = (props) => {
           <div className="display-flex justify-content-center">
             <button
              data-cy="btn-submit"
+             type="submit"
               className="cta-bg fw-bold outline-0 border-0 login-btn-padding"
-              onClick={handleSubmission}
             >
               Login
             </button>

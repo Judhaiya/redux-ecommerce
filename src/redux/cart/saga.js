@@ -1,10 +1,9 @@
 import { put, takeEvery } from "redux-saga/effects";
-import { getCartItems, deleteCartItems, addCartItems } from "./cartSlice";
+import { getCartItems, addCartItems } from "./cartSlice";
 import {
   getCartItemsApi,
-  deleteCartItemsApi,
   addCartItemApi
-} from "../../services/cartApi";
+} from "../../services/api";
 
 function* getAllCartItems(action) {
   try {

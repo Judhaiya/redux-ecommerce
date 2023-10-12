@@ -1,14 +1,21 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
 import {
-  persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import authReducer from "../redux/auth/authSlice";
 import productReducer from "../redux/products/productSlice";
 import cartReducer from "../redux/cart/cartSlice";
-import searchReducer from "../redux/search/searchSlice";
+import errorReducer from "../redux/error/errorSlice";
+import loadingReducer from "../redux/loading/loadingSlice";
 import { rootSagas } from "./rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
@@ -18,23 +25,25 @@ const authPersistConfig = {
   blacklist: ["error"],
   storage
 };
-const cartPersistConfig={
-  key:"cart",
+const cartPersistConfig = {
+  key: "cart",
   storage
-}
+};
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
-  products:productReducer,
-  cart:persistReducer(cartPersistConfig,cartReducer)
+  products: productReducer,
+  cart: persistReducer(cartPersistConfig, cartReducer),
+  error: errorReducer,
+  loading: loadingReducer
 });
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware(({
+    getDefaultMiddleware({
       serializableCheck: {
         ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
       }
-    })).concat(sagaMiddleware)
+    }).concat(sagaMiddleware)
 });
 
 sagaMiddleware.run(rootSagas);

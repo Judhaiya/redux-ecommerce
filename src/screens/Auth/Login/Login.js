@@ -17,7 +17,6 @@ const Register = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
   const userdata = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -33,13 +32,7 @@ const Register = () => {
     setIsOpen(false);
   }, [userdata]);
 
-  useEffect(() => {
-    if (userdata?.userDetails?.data?.token && location.pathname !== "/") {
-      navigate(-1);
-    }
-  }, [userdata?.userDetails?.data?.token]);
-
-  const onSaveLoginDetails = async () => {
+const onSaveLoginDetails = async () => {
     dispatch({ type: SIGN_IN_USER, payload: userDetails });
   };
 

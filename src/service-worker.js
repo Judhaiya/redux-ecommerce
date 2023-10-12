@@ -71,31 +71,55 @@ registerRoute(
 registerRoute(
   ({ url }) => url.pathname.startsWith("/auth/products"),
   new CacheFirst({
-    cacheName: "products-cache"
+    cacheName: "products-cache",
+    plugins:[
+      new ExpirationPlugin({maxAgeSeconds:3*24*60*60})
+    ]
   })
 );
 
 registerRoute(
   new RegExp("https://i.dummyjson.com/data/products/.*\\.jpg"),
-  new CacheFirst()
+  new CacheFirst({
+    cacheName:"products-img-jpg",
+    plugins:[
+      new ExpirationPlugin({maxAgeSeconds:3*24*60*60})
+    ]
+  })
 );
 registerRoute(
   new RegExp("https://i.dummyjson.com/data/products/.*\\.webp"),
-  new CacheFirst()
+  new CacheFirst({
+    cacheName:"products-img-webp",
+    plugins:[
+      new ExpirationPlugin({maxAgeSeconds:3*24*60*60})
+    ]
+  })
 )
 registerRoute(
   new RegExp("https://i.dummyjson.com/data/products/.*\\.png"),
-  new CacheFirst()
+  new CacheFirst({
+    cacheName:"products-img-png",
+    plugins:[
+      new ExpirationPlugin({maxAgeSeconds:3*24*60*60})
+    ]
+  })
 );
 registerRoute(({url})=>url.pathname === "/auth/carts/1",
 new NetworkFirst({
-  cacheName:"cart-items-cache"
+  cacheName:"cart-items-cache",
+  plugins:[
+    new ExpirationPlugin({maxAgeSeconds:24*60*60})
+  ]
 })
 )
 registerRoute(
   ({ url }) => url.pathname === "/auth/products/search",
   new NetworkFirst({
-    cacheName: "search-results-tmp-cache"
+    cacheName: "search-results-tmp-cache",
+    plugins:[
+      new ExpirationPlugin({maxAgeSeconds:600})
+    ]
   })
 );
 // This allows the web app to trigger skipWaiting via
