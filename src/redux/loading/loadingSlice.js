@@ -1,32 +1,54 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const loadingSlice = createSlice({
-    name:"loading",
-    initialState:{
-        isAuthLoading:false,
-        isProductsLoading:false,
-        isCartLoading:false,
-        isSingleProductLoading:false,
-        isProductSearchLoading:false
+  name: "loading",
+  initialState: {
+    isAuthLoading: false,
+    isProductsLoading: false,
+    isCartLoading: false,
+    isSingleProductLoading: false
+  },
+  reducers: {
+    authApiLoading: (state, action) => {
+      return { ...state, isAuthLoading: true };
     },
-    reducers:{
-        updateAuthLoading:(state,action)=>{
-            return {...state,isAuthLoading:action.payload}
-        },
-        updateProductsLoading:(state,action)=>{
-            return {...state,isProductsLoading:action.payload}
-        },
-        updateCartLoading:(state,action) =>{
-           return {...state,isCartLoading:action.payload}
-        },
-        updateSingleProductLoading:(state,action)=>{
-            return {...state,isSingleProductLoading:action.payload.loading}
-        },
-        updateProductSearchLoading:(state,action)=>{
-            return {...state,isProductSearchLoading:action.payload}
-        }
-    }
-})
+    authApiSuccess: (state, action) => {
+      return { ...state, isAuthLoading: false };
+    },
+    authApiFailure: (state, action) => {
+      return { ...state, isAuthLoading: false };
+    },
+    productsApiLoading: (state, action) => {
+      return { ...state, isProductsLoading: true };
+    },
+    productsApiSuccess: (state, action) => {
+      return { ...state, isProductsLoading: false };
+    },
+    productsApiFailure: (state, action) => {
+      return { ...state, isProductsLoading: false };
+    },
+    cartApiLoading: (state, action) => {
+      return { ...state, isCartLoading: true };
+    },
+    cartApiSuccess: (state, action) => {
+      return { ...state, isCartLoading: false };
+    },
+    cartApiFailure: (state, action) => {
+      return { ...state, isCartLoading: false };
+    },
+    singleProductApiLoading: (state, action) => {
+      return { ...state, isSingleProductLoading: true };
+    },
+    singleProductApiSuccess: (state, action) => {
+      return { ...state, isSingleProductLoading: false };
+    },
+    singleProductApiFailure: (state, action) => {
+        return { ...state, isSingleProductLoading: false };
+      }
+  }
+});
 
 export default loadingSlice.reducer;
-export const {updateAuthLoading,updateProductsLoading,updateCartLoading,updateSingleProductLoading,updateProductSearchLoading } = loadingSlice.actions;
+export const {
+authApiFailure,authApiLoading,authApiSuccess,productsApiFailure,productsApiLoading,productsApiSuccess,singleProductApiFailure,singleProductApiSuccess,singleProductApiLoading,cartApiLoading,cartApiSuccess,cartApiFailure
+} = loadingSlice.actions;

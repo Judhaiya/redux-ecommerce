@@ -38,7 +38,7 @@ const ProductDescription = () => {
   return (
     <div>
       {isLoading ? (
-        <div>Loading ....</div>
+        <div className="display-flex justify-content-center align-items-center">Loading ....</div>
       ) : (
         <>
           {Object.keys(productDetails).length > 0 && (

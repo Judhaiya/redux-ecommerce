@@ -5,38 +5,44 @@ import {
   getUserSearchedProducts
 } from "../../services/api";
 import { fetchProductsList, fetchSingleProductDetails } from "./productSlice";
-import {updateSingleProductLoading} from "../loading/loadingSlice";
+import {
+  productsApiFailure,productsApiLoading,productsApiSuccess,singleProductApiFailure,singleProductApiLoading,singleProductApiSuccess
+} from "../loading/loadingSlice";
 
 function* getProductsList(action) {
   try {
+    yield put(productsApiLoading());
     const productsList = yield getProductsApi(action.payload);
+    yield put(productsApiSuccess());
     yield put(fetchProductsList(productsList));
   } catch (err) {
+    yield put(productsApiFailure())
     console.log(err, "error.message");
   }
 }
 
 function* getSingleProductDetails(action) {
   try {
-    yield put(updateSingleProductLoading({loading:true}))
+    yield put(singleProductApiLoading());
     const singleProductDetails = yield getSingleProductApi(action.payload);
-    yield put(updateSingleProductLoading({loading:false}))
+    yield put(singleProductApiSuccess());
     yield put(fetchSingleProductDetails(singleProductDetails));
-    
-
   } catch (err) {
-    yield put(updateSingleProductLoading({loading:false}))
+    yield put(singleProductApiFailure());
     console.log(err, "err.message");
   }
 }
 
 function* fetchUserSearchedProducts(action) {
   try {
+    yield put(productsApiLoading())
     const searchedProductDetails = yield getUserSearchedProducts(
       action.payload
     );
+    yield put(productsApiSuccess())
     yield put(fetchProductsList(searchedProductDetails));
   } catch (error) {
+    yield put(productsApiFailure())
     console.error(error, "error while searching product");
   }
 }

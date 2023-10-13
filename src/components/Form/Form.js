@@ -1,5 +1,4 @@
 import React from "react";
-import { Snackbar } from "@mui/material";
 
 const Form = (props) => {
   const updateFormField = (e) => {
@@ -13,13 +12,14 @@ const Form = (props) => {
     e.preventDefault();
     const { username, password } = props.userDetails;
     if (username === "" || password === "") {
-      props.setIsOpen(true);
-      props.setErrorMsg("Username or password cannot be empty");
+      props.snackbarOpen();
+      props.showValidationError("Username or password cannot be empty");
       return;
     }
     props.onSaveLoginDetails();
   };
-  return (
+
+return (
     <>
       <div className="display-flex justify-content-center align-items-center flex-direction-column vertically-center ">
         <p className="font-family-abril logo-size">Logo</p>
@@ -30,7 +30,7 @@ const Form = (props) => {
               className="input-border"
               data-cy="username-input"
               type="text"
-              value={props.userDetails.username}
+              defaultValue={props.userDetails.username}
               name="username"
             />
           </div>
@@ -41,7 +41,7 @@ const Form = (props) => {
                 className="input-border"
                 data-cy="password-input"
                 type="text"
-                value={props?.userDetails?.password}
+                defaultValue={props?.userDetails?.password}
                 name="password"
               />
             </div>
@@ -52,18 +52,12 @@ const Form = (props) => {
              type="submit"
               className="cta-bg fw-bold outline-0 border-0 login-btn-padding"
             >
-              Login
+             {props.isLoading ? "loading ....." : "Login"}
             </button>
           </div>
         </form>
       </div>
-      <Snackbar
-        open={props.isOpen}
-        autoHideDuration={2000}
-        onClose={() => props.setIsOpen(false)}
-        message={props.errorMsg}
-      />
-    </>
+     </>
   );
 };
 

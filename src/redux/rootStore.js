@@ -14,8 +14,8 @@ import storage from "redux-persist/lib/storage";
 import authReducer from "../redux/auth/authSlice";
 import productReducer from "../redux/products/productSlice";
 import cartReducer from "../redux/cart/cartSlice";
-import errorReducer from "../redux/error/errorSlice";
 import loadingReducer from "../redux/loading/loadingSlice";
+import snackbarReducer from "./snackbar/snackbarSlice";
 import { rootSagas } from "./rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
@@ -33,7 +33,7 @@ const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
   products: productReducer,
   cart: persistReducer(cartPersistConfig, cartReducer),
-  error: errorReducer,
+  snackbar: snackbarReducer,
   loading: loadingReducer
 });
 export const store = configureStore({

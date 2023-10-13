@@ -7,6 +7,7 @@ import { logoutUser } from "../../redux/auth/authSlice";
 import { GET_ALL_PRODUCTS } from "../../redux/products/actions";
 import { ADD_TO_CART } from "../../redux/cart/actions";
 import { SEARCH_PRODUCT } from "../../redux/products/actions";
+import { openSnackbar } from "../../redux/snackbar/snackbarSlice";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
@@ -16,6 +17,7 @@ import "./Home.css";
 const Home = () => {
   const loggedInUserData = useSelector((state) => state.auth.userDetails.data);
   const productsList = useSelector((state) => state.products.productsList);
+  const isLoading = useSelector((state) => state.loading.isProductsLoading);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,7 +29,7 @@ const Home = () => {
     dispatch({ type: GET_ALL_PRODUCTS, payload: loggedInUserData.token });
   }, []);
 
-  const addItemToCart = () => {
+ const addItemToCart = () => {
     const payload = {
       token: loggedInUserData.token,
       cartItem: {
@@ -51,6 +53,10 @@ const Home = () => {
     navigate(`/singleProduct/${id}`);
   };
 
+  const snackbarOpen = ()=>{
+   dispatch(openSnackbar(true))
+  }
+
   const searchResults = (searchValue) => {
     const payload = {
       token: loggedInUserData.token,
@@ -62,7 +68,8 @@ const Home = () => {
   return (
     <div>
       <Navbar
-        userDetails={loggedInUserData}
+        isLoggedIn={loggedInUserData.token !== null ? true:false}
+        username={loggedInUserData?.username}
         handleLogout={handleLogout}
         searchResults={searchResults}
       />
@@ -71,9 +78,23 @@ const Home = () => {
         <h4 className="hero-txt-sideline text-center "> GET 30% OFF </h4>
       </div>
       <div className="product-list-container">
-        {productsList?.products?.map((product,i) => (
-          <ProductCard key={i} addItemToCart={addItemToCart} productDetails ={product} getSingleProductList={getSingleProductList} />
-        ))}
+        {isLoading ? (
+          <div className="display-flex justify-content-center align-items-center">
+            Loading ....
+          </div>
+        ) : (
+          <>
+            {productsList?.products?.map((product, i) => (
+              <ProductCard
+                key={i}
+                addItemToCart={addItemToCart}
+                productDetails={product}
+                getSingleProductList={getSingleProductList}
+                snackbarOpen={snackbarOpen}
+              />
+            ))}
+          </>
+        )}
       </div>
       <Footer />
     </div>

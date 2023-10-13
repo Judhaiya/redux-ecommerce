@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import "./ProductCard.css";
-import { Snackbar } from "@mui/material";
 
-const ProductCard = ({ productDetails, addItemToCart, getSingleProductList }) => {
+const ProductCard = ({ productDetails, addItemToCart, getSingleProductList,snackbarOpen }) => {
 
-  const [isOpen, setIsOpen] = useState(false);
 
-   const goToCartPage = (e) => {
+   const addToCart = (e) => {
     e.stopPropagation();
-    setIsOpen(true);
+     snackbarOpen()
     addItemToCart();
   };
 
@@ -36,20 +34,14 @@ const ProductCard = ({ productDetails, addItemToCart, getSingleProductList }) =>
             </p>
             <button
               className="margin-vertical cta-bg fw-bold outline-0 border-0 padding-small box-shadow-grey"
-              onClick={goToCartPage}
+              onClick={addToCart}
               data-cy="cart-button"
             >
               ADD TO CART
             </button>
           </div>
         </div>
-      <Snackbar
-       data-cy="snackbar"
-        open={isOpen}
-        autoHideDuration={500}
-        onClose={() => setIsOpen(false)}
-        message="product has been added to the cart successfully"
-      />
+     
   </>
   );
 };

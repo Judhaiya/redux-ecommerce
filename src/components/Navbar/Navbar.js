@@ -1,5 +1,5 @@
 
-import React,{useState} from "react";
+import React,{ useState} from "react";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { PersonOutline } from "@mui/icons-material";
@@ -11,7 +11,7 @@ import "./Navbar.css";
 
 const Navbar = (props) => {
   const navigate = useNavigate();
-  const { userDetails, handleLogout,searchResults } = props;
+  const { isLoggedIn, handleLogout,searchResults,username } = props;
   const [searchValue,setSearchValue] = useState("")
 
  const submitSearchResult = () =>{
@@ -31,9 +31,9 @@ const Navbar = (props) => {
       <div className="display-flex column-gap-sm align-items-center">
         <ShoppingCartIcon onClick={() => navigate("/cart")} data-cy="shopping-cart" />
         <div>
-          {userDetails?.token ? (
+          {isLoggedIn? (
             <div className="display-flex column-gap-sm align-items-center">
-              <div data-cy="username">{userDetails.username}</div>
+              <div data-cy="username">{username}</div>
               <button
                 className="cta-bg fw-bold outline-0 border-0  cta-padding-extrasmall  display-flex column-gap-sm align-items-center"
                 data-cy="logout-button"
