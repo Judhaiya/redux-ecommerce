@@ -5,7 +5,7 @@ export const loginApi = async (payload) => {
     method: "post",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
-    expiresInHours: 10
+    expiresInMins: 2
   });
   return await response.json();
 };

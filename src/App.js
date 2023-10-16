@@ -10,15 +10,18 @@ import { closeSnackbar } from "./redux/snackbar/snackbarSlice";
 import ProductDescription from "./screens/ProductDescription/ProductDescription";
 import ErrorBoundary from "./utilities/ErrorBoundary";
 import { Navigate } from "react-router";
+import { parseJwt } from "./utilities/decodeJwt";
 
 const PrivateRoute = ({ children }) => {
-  const isAuth = useSelector((state) => state?.auth?.userDetails?.data?.token);
-  return isAuth ? children : <Navigate to="/" />;
+  const isToken = useSelector((state) => state?.auth?.userDetails?.data?.token);
+  const tokenInfo = parseJwt(isToken)
+  const isTokenNotExpired = new Date() < new Date(tokenInfo.exp * 1000)
+  return isToken && isTokenNotExpired ? children : <Navigate to="/" />;
 };
 
 const PublicRoute = ({ children }) => {
-  const isAuth = useSelector((state) => state?.auth?.userDetails?.data?.token);
-  return isAuth ? <Navigate to="/home" /> : children;
+  const isToken = useSelector((state) => state?.auth?.userDetails?.data?.token);
+  return isToken ? <Navigate to="/home" /> : children;
 };
 
 function App() {
