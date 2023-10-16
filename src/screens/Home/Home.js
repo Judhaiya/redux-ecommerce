@@ -54,7 +54,7 @@ const Home = () => {
   };
 
   const snackbarOpen = ()=>{
-   dispatch(openSnackbar(true))
+   dispatch(openSnackbar())
   }
 
   const searchResults = (searchValue) => {

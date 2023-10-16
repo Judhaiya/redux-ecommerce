@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { GET_SINGLE_PRODUCT } from "../../redux/products/actions";
 import { ADD_TO_CART } from "../../redux/cart/actions";
 import { useParams } from "react-router";
+import { openSnackbar } from "../../redux/snackbar/snackbarSlice";
 
 const ProductDescription = () => {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ const ProductDescription = () => {
       ]
     };
     dispatch({ type: ADD_TO_CART, payload: { cartItem, token } });
+    dispatch(openSnackbar())
   };
   return (
     <div>

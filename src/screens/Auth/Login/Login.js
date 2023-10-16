@@ -27,10 +27,10 @@ const Register = () => {
   const errorMsg = useSelector((state) => state.snackbar.error.snackbarMsg);
 
   const snackbarOpen = () => {
-    dispatch(openSnackbar(true));
+    dispatch(openSnackbar());
   };
   const snackbarClose = () => {
-    dispatch(closeSnackbar(false));
+    dispatch(closeSnackbar());
   };
   const showValidationError = (payload) => {
     dispatch(errorSnackbar(payload));

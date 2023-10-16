@@ -18,7 +18,7 @@ const Cart = () => {
 
 
   const checkoutCart = () => {
-    dispatch(openSnackbar(true))
+    dispatch(openSnackbar())
     dispatch(successSnackbar("cart has been checkedout successfully"))
     setTimeout(() => {
       navigate("/");

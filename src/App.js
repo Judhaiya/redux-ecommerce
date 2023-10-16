@@ -5,24 +5,25 @@ import { Snackbar } from "@mui/material";
 import Home from "./screens/Home/Home";
 import Login from "./screens/Auth/Login/Login";
 import Cart from "./screens/Cart/Cart";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { closeSnackbar } from "./redux/snackbar/snackbarSlice";
 import ProductDescription from "./screens/ProductDescription/ProductDescription";
 import ErrorBoundary from "./utilities/ErrorBoundary";
 import { Navigate } from "react-router";
-
-
 
 const PrivateRoute = ({ children }) => {
   const isAuth = useSelector((state) => state?.auth?.userDetails?.data?.token);
   return isAuth ? children : <Navigate to="/" />;
 };
 
-const PublicRoute = ()=>{
+const PublicRoute = ({ children }) => {
   const isAuth = useSelector((state) => state?.auth?.userDetails?.data?.token);
-  return !isAuth ? <Navigate to="/" /> : <Navigate to="/home"/>;
-}
+  return isAuth ? <Navigate to="/home" /> : children;
+};
 
 function App() {
+  const dispatch = useDispatch();
+
   const isOpen = useSelector((state) => state?.snackbar?.isSnackbarOpen);
   const errorMsg = useSelector((state) => state?.snackbar?.snackbarMsg);
 
@@ -30,7 +31,14 @@ function App() {
     <div className="App">
       <ErrorBoundary>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route
+            path="/"
+            element={
+              <PublicRoute>
+                <Login />
+              </PublicRoute>
+            }
+          />
           <Route
             path="/home"
             element={
@@ -57,12 +65,13 @@ function App() {
           />
           <Route />
         </Routes>
-        {/* <Snackbar
+        <Snackbar
           data-cy="snackbar"
           open={isOpen}
-          autoHideDuration={500}
+          autoHideDuration={1000}
+          onClose={() => dispatch(closeSnackbar())}
           message={errorMsg}
-        /> */}
+        />
       </ErrorBoundary>
     </div>
   );
