@@ -3,7 +3,7 @@ import "./Footer.css"
 
 const Footer = () => {
   return (
-    <div className="display-flex justify-content-space-btw padding-leftRight footer-bg">
+    <div className="display-flex justify-content-space-between padding-leftRight-2rem secondary-grey padding-1rem">
       <div>
         <h3 className="font-family-abril">Logo</h3>
         <div>

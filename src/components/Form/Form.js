@@ -21,10 +21,10 @@ const Form = (props) => {
 
 return (
     <>
-      <div className="display-flex justify-content-center align-items-center flex-direction-column vertically-center ">
-        <p className="font-family-abril logo-size">Logo</p>
+      <div className="display-flex justify-content-center align-items-center flex-direction-column translate-y-50percent">
+        <p className="font-family-abril font-size-2rem">Logo</p>
         <form onSubmit={handleSubmission} onChange={(e) => updateFormField(e)}>
-          <div className="margin-vertical">
+          <div className="margin-vertical-2rem">
             <div>UserName</div>
             <input
               className="input-border"
@@ -34,7 +34,7 @@ return (
               name="username"
             />
           </div>
-          <div className="margin-vertical">
+          <div className="margin-vertical-2rem">
             <div>Password</div>
             <div>
               <input
@@ -50,7 +50,7 @@ return (
             <button
              data-cy="btn-submit"
              type="submit"
-              className="cta-bg fw-bold outline-0 border-0 login-btn-padding"
+              className="primary-bg-light-grey font-weight-bold outline-0 border-0 padding-point4rem-point9rem"
             >
              {props.isLoading ? "loading ....." : "Login"}
             </button>

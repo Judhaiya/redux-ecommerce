@@ -34,13 +34,16 @@ const ProductDescription = () => {
         }
       ]
     };
+
     dispatch({ type: ADD_TO_CART, payload: { cartItem, token } });
-    dispatch(openSnackbar())
+    dispatch(openSnackbar());
   };
   return (
     <div>
       {isLoading ? (
-        <div className="display-flex justify-content-center align-items-center">Loading ....</div>
+        <div className="display-flex justify-content-center align-items-center">
+          Loading ....
+        </div>
       ) : (
         <>
           {Object.keys(productDetails).length > 0 && (
@@ -65,7 +68,7 @@ const ProductDescription = () => {
                 </div>
                 <div>
                   <button
-                    className="fw-bold font-size-14px cta-bg fw-bold outline-0 border-0 padding-small box-shadow-grey"
+                    className="font-weight-bold font-size-14px primary-bg-light-grey font-weight-bold outline-0 border-0 padding-small box-shadow-grey"
                     onClick={addToCart}
                   >
                     ADD TO CART

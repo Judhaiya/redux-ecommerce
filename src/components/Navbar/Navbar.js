@@ -20,22 +20,22 @@ const Navbar = (props) => {
  }
 
   return (
-    <div className="display-flex justify-content-space-btw padding-2rem">
-      <div className="font-family-abril logo-size">Logo</div>
+    <div className="display-flex justify-content-space-between padding-2rem">
+      <div className="font-family-abril font-size-2rem">Logo</div>
       <div className="display-flex align-items-center">
         <input type="text" data-cy="search-input-box" onChange={(e)=>setSearchValue(e.target.value)} value={searchValue}/>
-        <button className="cta-bg fw-bold outline-0 border-0 search-icon-btn" data-cy="search-button" onClick={submitSearchResult}>
+        <button className="primary-bg-light-grey font-weight-bold outline-0 border-0 padding-point-3rem" data-cy="search-button" onClick={submitSearchResult}>
           <SearchIcon />
         </button>
       </div>
-      <div className="display-flex column-gap-sm align-items-center">
+      <div className="display-flex column-gap-point-6rem align-items-center cursor-pointer">
         <ShoppingCartIcon onClick={() => navigate("/cart")} data-cy="shopping-cart" />
         <div>
           {isLoggedIn? (
-            <div className="display-flex column-gap-sm align-items-center">
+            <div className="display-flex column-gap-point-6rem align-items-center">
               <div data-cy="username">{username}</div>
               <button
-                className="cta-bg fw-bold outline-0 border-0  cta-padding-extrasmall  display-flex column-gap-sm align-items-center"
+                className="primary-bg-light-grey font-weight-bold outline-0 border-0  padding-point-4rem  display-flex column-gap-point-6rem align-items-center"
                 data-cy="logout-button"
                 onClick={() => handleLogout()}
               >

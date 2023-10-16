@@ -1,9 +1,9 @@
-.vertically-center{
+.translate-y-50percent{
  transform:translateY(50%)
 }
 .input-border{
     border:1px solid grey;
 }
-.login-btn-padding{
+.padding-point4rem-point9rem{
     padding:0.4rem 0.9rem;
 }

@@ -1,12 +1,19 @@
-.product-list-container{
+
+.display-grid{
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap:0.8rem;
-   padding:2rem;
 }
-.card-shadow{
+.grid-template-4columns{
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.grid-gap-point-8rem{
+    grid-gap:0.8rem;
+}
+.padding-vertical-horizontal-2rem{
+    padding:2rem;
+}
+.light-grey-box-shadow{
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-.img-placeholder{
+.height-180px{
     height:180px;
 }

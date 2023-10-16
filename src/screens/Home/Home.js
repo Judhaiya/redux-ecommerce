@@ -74,10 +74,10 @@ const Home = () => {
         searchResults={searchResults}
       />
       {/* Banner  */}
-      <div className="skeleton-grey width-100 hght-500px display-flex align-items-center justify-content-center">
+      <div className="background-color-d3d3d3 width-100 height-500px display-flex align-items-center justify-content-center">
         <h4 className="hero-txt-sideline text-center "> GET 30% OFF </h4>
       </div>
-      <div className="product-list-container">
+      <div className="display-grid grid-template-4columns grid-gap-point-8rem padding-vertical-horizontal-2rem">
         {isLoading ? (
           <div className="display-flex justify-content-center align-items-center">
             Loading ....

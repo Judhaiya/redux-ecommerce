@@ -39,14 +39,14 @@ const Cart = () => {
           <table>
             <tbody>
               <tr>
-                <th className="padding-medium">Item</th>
-                <th className="padding-medium">Price</th>
-                <th className="padding-medium">Quantity</th>
-                <th className="padding-medium">Total</th>
+                <th className="padding-point-8rem">Item</th>
+                <th className="padding-point-8rem">Price</th>
+                <th className="padding-point-8rem">Quantity</th>
+                <th className="padding-point-8rem">Total</th>
               </tr>
               {cartItemsList?.products?.map((product) => (
                 <tr key={product?.id}>
-                  <td className="padding-medium display-flex align-items-center column-gap-sm">
+                  <td className="padding-point-8rem display-flex align-items-center column-gap-point-6rem">
                     <div className="width-100px height-50px default-bg-grey"></div>
                     <div className="font-size-14px">
                       <p>{product?.title}</p>
@@ -54,10 +54,10 @@ const Cart = () => {
                   </td>
                   <td>{product?.price}</td>
                   <td>
-                    <div className="display-flex align-items-center column-gap-sm">
-                      <button className="fw-bold outline-0 border-0 ">+</button>
+                    <div className="display-flex align-items-center column-gap-point-6rem">
+                      <button className="font-weight-bold outline-0 border-0 ">+</button>
                       <p>{product?.quantity}</p>
-                      <button className="fw-bold outline-0 border-0 ">-</button>
+                      <button className="font-weight-bold outline-0 border-0 ">-</button>
                     </div>
                   </td>
                   <td>{product?.total}</td>
@@ -65,7 +65,7 @@ const Cart = () => {
               ))}
               <tr>
                 <td className="border-0"></td>
-                <td colSpan="2" className="padding-medium">
+                <td colSpan="2" className="padding-point-8rem">
                   Total:
                 </td>
                 <td>{cartItemsList?.total}</td>
@@ -73,17 +73,17 @@ const Cart = () => {
 
               <tr>
                 <td className="border-0"></td>
-                <td colSpan="2" className="padding-medium">
+                <td colSpan="2" className="padding-point-8rem">
                   Discounted Total
                 </td>
                 <td> {cartItemsList.discountedTotal}</td>
               </tr>
               <tr>
                 <td className="border-0"></td>
-                <td colSpan="2" className="text-align-center padding-medium">
+                <td colSpan="2" className="text-align-center padding-point-8rem">
                   {" "}
                   <button
-                    className="cta-bg fw-bold outline-0 border-0 padding-small box-shadow-grey transform-center-25px"
+                    className="primary-bg-light-grey font-weight-bold outline-0 border-0 padding-small box-shadow-grey transform-translateX-25px"
                     onClick={checkoutCart}
                   >
                     PROCEED TO CHECKOUT
