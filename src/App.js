@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router";
 import { Snackbar } from "@mui/material";
 
@@ -11,12 +11,20 @@ import ProductDescription from "./screens/ProductDescription/ProductDescription"
 import ErrorBoundary from "./utilities/ErrorBoundary";
 import { Navigate } from "react-router";
 import { parseJwt } from "./utilities/decodeJwt";
+import { logoutUser } from "./redux/auth/authSlice";
 
 const PrivateRoute = ({ children }) => {
   const isToken = useSelector((state) => state?.auth?.userDetails?.data?.token);
-  const tokenInfo = parseJwt(isToken)
-  const isTokenNotExpired = new Date() < new Date(tokenInfo.exp * 1000)
-  return isToken && isTokenNotExpired ? children : <Navigate to="/" />;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const tokenInfo = isToken && parseJwt(isToken);
+    if (new Date() > new Date(tokenInfo?.exp * 1000)) {
+      dispatch(logoutUser());
+    }
+  }, []);
+
+  return isToken ? children : <Navigate to="/" />;
 };
 
 const PublicRoute = ({ children }) => {
