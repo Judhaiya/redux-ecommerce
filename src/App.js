@@ -8,22 +8,14 @@ import Cart from "./screens/Cart/Cart";
 import { useSelector, useDispatch } from "react-redux";
 import { closeSnackbar } from "./redux/snackbar/snackbarSlice";
 import ProductDescription from "./screens/ProductDescription/ProductDescription";
+import { logoutUser } from "./redux/auth/authSlice";
+import { errorSnackbar,openSnackbar } from "./redux/snackbar/snackbarSlice";
+
 import ErrorBoundary from "./utilities/ErrorBoundary";
 import { Navigate } from "react-router";
-import { parseJwt } from "./utilities/decodeJwt";
-import { logoutUser } from "./redux/auth/authSlice";
 
 const PrivateRoute = ({ children }) => {
   const isToken = useSelector((state) => state?.auth?.userDetails?.data?.token);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const tokenInfo = isToken && parseJwt(isToken);
-    if (new Date() > new Date(tokenInfo?.exp * 1000)) {
-      dispatch(logoutUser());
-    }
-  }, []);
-
   return isToken ? children : <Navigate to="/" />;
 };
 
@@ -37,6 +29,18 @@ function App() {
 
   const isOpen = useSelector((state) => state?.snackbar?.isSnackbarOpen);
   const errorMsg = useSelector((state) => state?.snackbar?.snackbarMsg);
+
+  const unauthorized = useSelector((state)=>state?.auth?.error?.msg)
+  
+  useEffect(()=>{
+    console.log(unauthorized)
+    if (unauthorized){
+      // dispatch(logoutUser())
+      // dispatch(errorSnackbar("there"))
+      dispatch(openSnackbar())
+
+    }
+  },[unauthorized])
 
   return (
     <div className="App">

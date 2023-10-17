@@ -14,18 +14,22 @@ const authSlice = createSlice({
               }
            return updatedState
         },
-        loginFailedErrors: (state, errors) => {
-       
-         const updatedState = {
-           userDetails:{data:null},
-           error:{msg:errors.payload}
-         }
-         return updatedState
+        throwUnauthorised: (state,errorMsg)=>{
+            console.log(errorMsg)
+          const updatedState = {
+            ...state,
+            error:{msg:errorMsg.payload }
+          }
+          return updatedState
         },
         logoutUser: (state) => {
-            state.userDetails.data.token = null
+            const updatedState = {
+                ...state,
+                userDetails:{data:{...state.userDetails.data,token:null}}
+            }
+            return updatedState
         },
         }
 })
-export const { getRegisteredUserDetails, loginFailedErrors, logoutUser,clearError } = authSlice.actions
+export const { getRegisteredUserDetails,throwUnauthorised, logoutUser } = authSlice.actions
 export default authSlice.reducer

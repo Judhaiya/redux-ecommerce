@@ -8,6 +8,7 @@ import { fetchProductsList, fetchSingleProductDetails } from "./productSlice";
 import {
   productsApiFailure,productsApiLoading,productsApiSuccess,singleProductApiFailure,singleProductApiLoading,singleProductApiSuccess
 } from "../loading/loadingSlice";
+import { throwUnauthorised } from "../auth/authSlice";
 
 function* getProductsList(action) {
   try {
@@ -15,10 +16,15 @@ function* getProductsList(action) {
     const productsList = yield getProductsApi(action.payload);
     yield put(productsApiSuccess());
     yield put(fetchProductsList(productsList));
+   
   } catch (err) {
     yield put(productsApiFailure())
-    console.log(err, "error.message");
-  }
+   
+    if (err.message === "unauthorized"){
+      
+     yield put(throwUnauthorised(err?.message))
+    }
+}
 }
 
 function* getSingleProductDetails(action) {

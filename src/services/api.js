@@ -50,6 +50,7 @@ export const getProductsApi = async (token) => {
       "Content-Type": "application/json"
     }
   });
+  if (response.status > 400) throw new Error("session expired")
   return await response.json();
 };
 export const getSingleProductApi = async (payload) => {
