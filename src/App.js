@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { closeSnackbar } from "./redux/snackbar/snackbarSlice";
 import ProductDescription from "./screens/ProductDescription/ProductDescription";
 import { logoutUser } from "./redux/auth/authSlice";
-import { errorSnackbar,openSnackbar } from "./redux/snackbar/snackbarSlice";
+import { openSnackbar } from "./redux/snackbar/snackbarSlice";
 
 import ErrorBoundary from "./utilities/ErrorBoundary";
 import { Navigate } from "react-router";
@@ -30,17 +30,14 @@ function App() {
   const isOpen = useSelector((state) => state?.snackbar?.isSnackbarOpen);
   const errorMsg = useSelector((state) => state?.snackbar?.snackbarMsg);
 
-  const unauthorized = useSelector((state)=>state?.auth?.error?.msg)
-  
-  useEffect(()=>{
-    console.log(unauthorized)
-    if (unauthorized){
-      // dispatch(logoutUser())
-      // dispatch(errorSnackbar("there"))
-      dispatch(openSnackbar())
+  const unauthorized = useSelector((state) => state?.auth?.error?.msg);
 
+  useEffect(() => {
+    if (unauthorized) {
+      dispatch(openSnackbar());
+      dispatch(logoutUser());
     }
-  },[unauthorized])
+  }, [unauthorized]);
 
   return (
     <div className="App">

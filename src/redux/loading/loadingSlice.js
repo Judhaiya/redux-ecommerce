@@ -9,40 +9,40 @@ const loadingSlice = createSlice({
     isSingleProductLoading: false
   },
   reducers: {
-    authApiLoading: (state, action) => {
+    authApiLoading: (state) => {
       return { ...state, isAuthLoading: true };
     },
-    authApiSuccess: (state, action) => {
+    authApiSuccess: (state) => {
       return { ...state, isAuthLoading: false };
     },
-    authApiFailure: (state, action) => {
+    authApiFailure: (state) => {
       return { ...state, isAuthLoading: false };
     },
-    productsApiLoading: (state, action) => {
+    productsApiLoading: (state) => {
       return { ...state, isProductsLoading: true };
     },
-    productsApiSuccess: (state, action) => {
+    productsApiSuccess: (state) => {
       return { ...state, isProductsLoading: false };
     },
-    productsApiFailure: (state, action) => {
+    productsApiFailure: (state) => {
       return { ...state, isProductsLoading: false };
     },
-    cartApiLoading: (state, action) => {
+    cartApiLoading: (state) => {
       return { ...state, isCartLoading: true };
     },
-    cartApiSuccess: (state, action) => {
+    cartApiSuccess: (state) => {
       return { ...state, isCartLoading: false };
     },
-    cartApiFailure: (state, action) => {
+    cartApiFailure: (state) => {
       return { ...state, isCartLoading: false };
     },
-    singleProductApiLoading: (state, action) => {
+    singleProductApiLoading: (state) => {
       return { ...state, isSingleProductLoading: true };
     },
-    singleProductApiSuccess: (state, action) => {
+    singleProductApiSuccess: (state) => {
       return { ...state, isSingleProductLoading: false };
     },
-    singleProductApiFailure: (state, action) => {
+    singleProductApiFailure: (state) => {
         return { ...state, isSingleProductLoading: false };
       }
   }

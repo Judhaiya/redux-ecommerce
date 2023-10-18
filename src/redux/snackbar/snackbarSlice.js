@@ -13,7 +13,7 @@ const snackbarSlice = createSlice({
            return {...state,error:{msg:action.payload}, success:{msg:""},snackbarMsg:action.payload}
         },
        successSnackbar:(state,action)=>{
-        return {...state,error:"",success:{msg:action.payload},snackbarMsg:action.payload}
+        return {...state,error:{msg:""},success:{msg:action.payload},snackbarMsg:action.payload}
        },
        openSnackbar:(state)=>{
         return {...state,isSnackbarOpen:true}

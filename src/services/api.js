@@ -1,12 +1,13 @@
 import { BASE_API_URL } from "./baseUrl";
+import { unauthorisedError, badRequest } from "../utilities/customError";
 
 export const loginApi = async (payload) => {
   const response = await fetch(`${BASE_API_URL}/auth/login`, {
     method: "post",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-    expiresInMins: 2
+    body: JSON.stringify(payload)
   });
+  if (response.status === 400) throw badRequest("invalid credentials");
   return await response.json();
 };
 
@@ -18,7 +19,10 @@ export const getCartItemsApi = async (token) => {
       "Content-Type": "application/json"
     }
   });
-  return await response.json();
+
+  if (response.status > 400) {
+    throw unauthorisedError();
+  }  return await response.json();
 };
 
 export const addCartItemApi = async (token, payload) => {
@@ -30,6 +34,9 @@ export const addCartItemApi = async (token, payload) => {
     },
     body: JSON.stringify(payload)
   });
+  if (response.status > 400) {
+    throw unauthorisedError();
+  }
   return await response.json();
 };
 
@@ -50,7 +57,9 @@ export const getProductsApi = async (token) => {
       "Content-Type": "application/json"
     }
   });
-  if (response.status > 400) throw new Error("session expired")
+  if (response.status > 400) {
+    throw unauthorisedError();
+  }
   return await response.json();
 };
 export const getSingleProductApi = async (payload) => {
@@ -62,6 +71,9 @@ export const getSingleProductApi = async (payload) => {
       "Content-Type": "application/json"
     }
   });
+  if (response.status > 400) {
+    throw unauthorisedError();
+  }
   return await response.json();
 };
 
@@ -77,5 +89,8 @@ export const getUserSearchedProducts = async (payload) => {
       }
     }
   );
+  if (response.status > 400) {
+    throw unauthorisedError();
+  }
   return await response.json();
 };

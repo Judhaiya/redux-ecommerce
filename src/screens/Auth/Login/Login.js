@@ -37,16 +37,11 @@ const Register = () => {
   };
 
   useEffect(() => {
-    if (userdata.error.msg) {
-      snackbarOpen();
-      dispatch(showValidationError(userdata.error.msg));
-      return;
-    } else if (userdata?.userDetails?.data?.token) {
+   if (userdata?.userDetails?.data?.token) {
       setUserDetails({ username: "", password: "" });
       navigate("/home");
-      return;
-    }
-    snackbarClose();
+      }
+ 
   }, [userdata]);
 
   const onSaveLoginDetails = async () => {

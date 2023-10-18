@@ -1,19 +1,22 @@
 import { put, takeEvery } from "redux-saga/effects";
-import { getRegisteredUserDetails } from "./authSlice";
+import { getRegisteredUserDetails,throwBadRequest } from "./authSlice";
 import { loginApi } from "../../services/api";
 import { authApiFailure,authApiLoading,authApiSuccess } from "../loading/loadingSlice";
+import { errorSnackbar } from "../snackbar/snackbarSlice";
 
 function* loginUser(loginDetails) {
  try {
     yield put (authApiLoading())
     const loggedInUserDetails = yield loginApi(loginDetails.payload);
-    if (loggedInUserDetails.message) throw new Error(loggedInUserDetails.message);
     yield put(getRegisteredUserDetails(loggedInUserDetails));
     yield put (authApiSuccess())
 
   } catch (err) {
-    console.log(err, "error message")
-    yield put (authApiFailure(err?.message))
+    yield put (authApiFailure())
+    if(err.statusCode === 400) {
+     yield put (throwBadRequest(err?.message))
+    yield put(errorSnackbar(err?.message))
+    }
   }
 }
 

@@ -9,6 +9,7 @@ import {
   productsApiFailure,productsApiLoading,productsApiSuccess,singleProductApiFailure,singleProductApiLoading,singleProductApiSuccess
 } from "../loading/loadingSlice";
 import { throwUnauthorised } from "../auth/authSlice";
+import { errorSnackbar } from "../snackbar/snackbarSlice";
 
 function* getProductsList(action) {
   try {
@@ -20,9 +21,9 @@ function* getProductsList(action) {
   } catch (err) {
     yield put(productsApiFailure())
    
-    if (err.message === "unauthorized"){
-      
+    if (err.statusCode === 400){
      yield put(throwUnauthorised(err?.message))
+     yield put(errorSnackbar(err?.message))
     }
 }
 }
@@ -35,7 +36,10 @@ function* getSingleProductDetails(action) {
     yield put(fetchSingleProductDetails(singleProductDetails));
   } catch (err) {
     yield put(singleProductApiFailure());
-    console.log(err, "err.message");
+    if (err.statusCode === 400){
+      yield put(throwUnauthorised(err?.message))
+      yield put(errorSnackbar(err?.message))
+     }
   }
 }
 
@@ -47,9 +51,13 @@ function* fetchUserSearchedProducts(action) {
     );
     yield put(productsApiSuccess())
     yield put(fetchProductsList(searchedProductDetails));
-  } catch (error) {
+  } catch (err) {
     yield put(productsApiFailure())
-    console.error(error, "error while searching product");
+    console.error(err, "error while searching product");
+    if (err.statusCode === 400){
+      yield put(throwUnauthorised(err?.message))
+      yield put(errorSnackbar(err?.message))
+     }
   }
 }
 

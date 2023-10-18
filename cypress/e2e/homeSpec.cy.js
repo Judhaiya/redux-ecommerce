@@ -23,7 +23,7 @@ describe("testing search functionality", () => {
     cy.get('[data-cy="password-input"]').type("0lelplR");
     cy.get('[data-cy="btn-submit"]').click();
   });
-  it.only("input text searched should resemble the product category name", () => {
+  it("input text searched should resemble the product category name", () => {
     cy.get('[data-cy="search-input-box"]').type("phone");
     cy.get('[data-cy="search-button"]').click();
     cy.wait(1500);
