@@ -6,7 +6,7 @@ import "./Cart.css";
 import { successSnackbar,openSnackbar } from "../../redux/snackbar/snackbarSlice";
 
 const Cart = () => {
-  const cartItemsList = useSelector((state) => state?.cart.cartItems);
+  const cartItemsList = useSelector((state) => state?.cart);
   const loggedInUserData = useSelector((state) => state.auth.userDetails.data);
   const isLoading = useSelector((state) => state.loading.isCartLoading);
   const dispatch = useDispatch();
@@ -16,8 +16,7 @@ const Cart = () => {
     dispatch({ type: GET_CART_ITEMS, payload: loggedInUserData.token });
   }, []);
 
-
-  const checkoutCart = () => {
+   const checkoutCart = () => {
     dispatch(openSnackbar())
     dispatch(successSnackbar("cart has been checkedout successfully"))
     setTimeout(() => {
@@ -76,7 +75,7 @@ const Cart = () => {
                 <td colSpan="2" className="padding-point-8rem">
                   Discounted Total
                 </td>
-                <td> {cartItemsList.discountedTotal}</td>
+                <td> {cartItemsList?.discountedTotal}</td>
               </tr>
               <tr>
                 <td className="border-0"></td>
