@@ -28,7 +28,7 @@ function* addItemToCart(action) {
   const { token, cartItem } = action.payload;
   try {
     yield addCartItemApi(token, cartItem);
-    yield put(successSnackbar("products  has been added to cart successfully"));
+    yield put(successSnackbar("products has been added to cart successfully"));
   } catch (err) {
     console.error(err, "error while getting cart from items");
     if (err.statusCode === 400) {

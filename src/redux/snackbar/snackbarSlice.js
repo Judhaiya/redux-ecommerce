@@ -19,7 +19,7 @@ const snackbarSlice = createSlice({
         return {...state,isSnackbarOpen:true}
        },
        closeSnackbar:(state)=>{
-        return {...state,isSnackbarOpen:false}
+        return {...state,isSnackbarOpen:false,snackbarMsg:""}
        }
     }
 })

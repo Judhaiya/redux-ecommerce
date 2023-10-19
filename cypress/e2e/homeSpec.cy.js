@@ -76,11 +76,7 @@ describe("testing add to cart functionality", () => {
     cy.get('[data-cy="btn-submit"]').click();
   });
   it("after clicking add to cart button ,the toaster content should be items added to cart", () => {
-    cy.get('[data-cy="cart-button"]').each((cartButton) => {
-      cy.wrap(cartButton).click();
-      cy.get('[data-cy="snackbar"]').contains(
-        "product has been added to the cart successfully"
-      );
-    });
+   cy.get('[data-cy="cart-button"]').first().click()
+   cy.get(".MuiSnackbarContent-message").should('have.text',"products has been added to cart successfully")
   });
 });

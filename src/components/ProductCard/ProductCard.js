@@ -6,8 +6,8 @@ const ProductCard = ({ productDetails, addItemToCart, getSingleProductList,snack
 
    const addToCart = (e) => {
     e.stopPropagation();
-     snackbarOpen()
     addItemToCart();
+    snackbarOpen()
   };
 
   return (
