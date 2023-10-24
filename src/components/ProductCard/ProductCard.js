@@ -27,7 +27,7 @@ const ProductCard = ({ productDetails, addItemToCart, getSingleProductList,snack
           </div>
           <div className="text-align-left margin-sm padding-small" >
             <p>{productDetails?.category}</p>
-            <h5 data-cy="product-title">{productDetails?.title}</h5>
+            <h5 data-cy="product-title" className="textOverflow-ellipsis">{productDetails?.title}</h5>
             <p>{productDetails.rating}</p>
             <p>
               ${productDetails?.price} <span>({productDetails?.discount}% OFF)</span>

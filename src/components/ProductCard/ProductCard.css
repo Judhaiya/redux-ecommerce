@@ -17,3 +17,12 @@
 .height-180px{
     height:180px;
 }
+.overflow-hidden{
+    overflow: hidden;
+}
+.textOverflow-ellipsis{
+    text-overflow: ellipsis;
+}
+.whiteSpace-no-wrap{
+    white-space: nowrap;
+}
