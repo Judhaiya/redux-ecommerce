@@ -10,6 +10,8 @@ const cartSlice = createSlice({
         }
      }
 })
-
+/**
+ * getCartItems sets state to action.payload,payload will be items in the cart
+ */
 export const {getCartItems} = cartSlice.actions;
 export default cartSlice.reducer;

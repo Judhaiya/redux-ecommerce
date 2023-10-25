@@ -3,7 +3,11 @@ import "./ProductCard.css";
 
 const ProductCard = ({ productDetails, addItemToCart, getSingleProductList,snackbarOpen }) => {
 
-
+ /**
+  * calls e.stopPropagation()
+  * calls  addItemToCart and snackbarOpen function on clicking add to cart button
+  * to show add items to the cart and to display snackbar
+  */
    const addToCart = (e) => {
     e.stopPropagation();
     addItemToCart();

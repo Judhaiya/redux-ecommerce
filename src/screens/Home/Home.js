@@ -21,6 +21,12 @@ const Home = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  /**
+   * @function
+   * dispatch logout user to log the user out after clicking logout button
+   * and navigate to login screen
+   */
   const handleLogout = () => {
     dispatch(logoutUser());
     navigate("/");
@@ -29,6 +35,12 @@ const Home = () => {
     dispatch({ type: GET_ALL_PRODUCTS, payload: loggedInUserData.token });
   }, []);
 
+/**
+ * @function
+ * calls dispatch with type "ADD_TO_CART",payload
+ * payload carries info about userId,products to be added to the cart with id and their respective
+ * quantity,token
+ */
  const addItemToCart = () => {
     const payload = {
       token: loggedInUserData.token,
@@ -49,13 +61,29 @@ const Home = () => {
     dispatch({ type: ADD_TO_CART, payload });
   };
 
+  /**
+   * @function
+   * @param {number} id 
+   * navigate user to product description page on click of an individual product card
+   */
   const getSingleProductList = (id) => {
     navigate(`/singleProduct/${id}`);
   };
-
+  
+  /**
+   * @function
+   * dispatch open snackbar function to show snackbar after adding product to the cart
+   */
   const snackbarOpen = ()=>{
    dispatch(openSnackbar())
   }
+
+  /**
+   * @function
+   * @param {string} searchValue 
+   * dispatch type "SEARCH_PRODUCT" to get results of user searched products
+   * payload contains user token and user searched product
+   */
 
   const searchResults = (searchValue) => {
     const payload = {

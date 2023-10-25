@@ -1,12 +1,26 @@
 import React from "react";
 
 const Form = (props) => {
+
+  /**
+   * @function
+   * sets userdetails state 
+   * fires when user enters username and password
+   * e.target.name - name of input field
+   */
   const updateFormField = (e) => {
     props.setUserDetails({
       ...props.userDetails,
       [e.target.name]: e.target.value
     });
   };
+ 
+  /**
+   * prevents the default behaviour of form submission
+   * destructure username and password from userdetails props
+   * shows error snackbar when one of the userdetails is empty 
+   * if above checks are qualified,call onSaveLoginDetails to store login details
+   */
 
   const handleSubmission = (e) => {
     e.preventDefault();

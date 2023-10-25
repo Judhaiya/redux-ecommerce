@@ -14,6 +14,12 @@ const Navbar = (props) => {
   const { isLoggedIn, handleLogout,searchResults,username } = props;
   const [searchValue,setSearchValue] = useState("")
 
+  /**
+   * @function
+   * if user searched product returns empty field, search results function will not be executed
+   * search results will be executed ,only if it passes above check
+   */
+
  const submitSearchResult = () =>{
   if  ( searchValue === "") return 
   searchResults(searchValue)

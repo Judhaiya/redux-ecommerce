@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { GET_CART_ITEMS } from "../../redux/cart/actions";
 import { useNavigate } from "react-router";
 import "./Cart.css";
-import { successSnackbar,openSnackbar } from "../../redux/snackbar/snackbarSlice";
+import {
+  successSnackbar,
+  openSnackbar
+} from "../../redux/snackbar/snackbarSlice";
 
 const Cart = () => {
   const cartItemsList = useSelector((state) => state?.cart);
@@ -16,9 +19,14 @@ const Cart = () => {
     dispatch({ type: GET_CART_ITEMS, payload: loggedInUserData.token });
   }, []);
 
-   const checkoutCart = () => {
-    dispatch(openSnackbar())
-    dispatch(successSnackbar("cart has been checkedout successfully"))
+  /**
+   * dispatch openSnackbar,successSnackbar
+   * cart update success msg is updated in success snackbar and snackbar will be showed
+   * after 500 milliseconds lapse of showing msg,navigate to login screen
+   */
+  const checkoutCart = () => {
+    dispatch(successSnackbar("cart has been checkedout successfully"));
+    dispatch(openSnackbar());
     setTimeout(() => {
       navigate("/");
     }, 500);
@@ -54,9 +62,13 @@ const Cart = () => {
                   <td>{product?.price}</td>
                   <td>
                     <div className="display-flex align-items-center column-gap-point-6rem">
-                      <button className="font-weight-bold outline-0 border-0 ">+</button>
+                      <button className="font-weight-bold outline-0 border-0 ">
+                        +
+                      </button>
                       <p>{product?.quantity}</p>
-                      <button className="font-weight-bold outline-0 border-0 ">-</button>
+                      <button className="font-weight-bold outline-0 border-0 ">
+                        -
+                      </button>
                     </div>
                   </td>
                   <td>{product?.total}</td>
@@ -79,7 +91,10 @@ const Cart = () => {
               </tr>
               <tr>
                 <td className="border-0"></td>
-                <td colSpan="2" className="text-align-center padding-point-8rem">
+                <td
+                  colSpan="2"
+                  className="text-align-center padding-point-8rem"
+                >
                   {" "}
                   <button
                     className="primary-bg-light-grey font-weight-bold outline-0 border-0 padding-small box-shadow-grey transform-translateX-25px"
@@ -91,7 +106,7 @@ const Cart = () => {
               </tr>
             </tbody>
           </table>
-          </div>
+        </div>
       )}
     </>
   );

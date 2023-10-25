@@ -20,6 +20,13 @@ const ProductDescription = () => {
     dispatch({ type: GET_SINGLE_PRODUCT, payload: { id, token } });
   }, []);
 
+  /**
+   * @function
+   * calls dispatch with type "ADD_TO_CART",payload
+   * payload carries info about userId,products to be added to the cart with id and their respective
+   * quantity,token
+   *  dispatch open snackbar function to show snackbar after adding product to the cart
+   */
   const addToCart = () => {
     let cartItem = {
       userId: 1,

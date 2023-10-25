@@ -7,7 +7,6 @@ import { SIGN_IN_USER } from "../../../redux/auth/actions";
 import {
   errorSnackbar,
   openSnackbar,
-  closeSnackbar
 } from "../../../redux/snackbar/snackbarSlice";
 
 import { useNavigate } from "react-router";
@@ -26,24 +25,37 @@ const Register = () => {
   const isOpen = useSelector((state) => state.snackbar.isSnackbarOpen);
   const errorMsg = useSelector((state) => state.snackbar.error.snackbarMsg);
 
+  /**
+   * @function
+   * dispatch function for opening snackbar
+   * to open snackbar for showing error or success message
+   */
   const snackbarOpen = () => {
     dispatch(openSnackbar());
   };
-  const snackbarClose = () => {
-    dispatch(closeSnackbar());
-  };
+
+  /**
+   * @function
+   * @param {string} payload, error message to show when validation fails
+   * this happens while we have to update error snackbar state for showing validation
+   * error snackbar
+   */
+
   const showValidationError = (payload) => {
     dispatch(errorSnackbar(payload));
   };
 
   useEffect(() => {
-   if (userdata?.userDetails?.data?.token) {
+    if (userdata?.userDetails?.data?.token) {
       setUserDetails({ username: "", password: "" });
       navigate("/home");
-      }
- 
+    }
   }, [userdata]);
 
+  /**
+   * @function
+   * calls dispatch function for the type SIGN_IN_USER and signed in userdetails for the same
+   */
   const onSaveLoginDetails = async () => {
     dispatch({ type: SIGN_IN_USER, payload: userDetails });
   };
@@ -52,7 +64,6 @@ const Register = () => {
     onSaveLoginDetails,
     isOpen,
     snackbarOpen,
-    snackbarClose,
     showValidationError,
     errorMsg,
     userDetails,

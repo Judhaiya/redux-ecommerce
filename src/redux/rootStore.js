@@ -20,6 +20,13 @@ import { rootSagas } from "./rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
 
+/**
+ * @Object 
+ * configuring persits for auth slice
+ * key will be auth,preventing error state from persisting in local storage using blacklist property,
+ * storage - default storage(local storage)
+ */
+
 const authPersistConfig = {
   key: "auth",
   blacklist: ["error"],
@@ -29,6 +36,15 @@ const cartPersistConfig = {
   key: "cart",
   storage
 };
+
+/**
+ * combineReducers
+ * @function 
+ * @param {Object}
+ * object stores the reducers that are going to be used in the project with corresponding config if there is any
+ * basically reducers for all the features that require redux in the application
+ */
+
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
   products: productReducer,
@@ -36,9 +52,16 @@ const rootReducer = combineReducers({
   snackbar: snackbarReducer,
   loading: loadingReducer
 });
+
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
+  /**
+   * @function
+   * @param {Object}
+   * serializableCheck -does serializable check for the following actions
+   * invoking function's method concat to pass our custom middleware (sagaMiddleware) as argument
+   */
     getDefaultMiddleware({
       serializableCheck: {
         ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
@@ -47,3 +70,4 @@ export const store = configureStore({
 });
 
 sagaMiddleware.run(rootSagas);
+/** run all the sagas from root sagas */

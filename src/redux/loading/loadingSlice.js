@@ -50,5 +50,8 @@ const loadingSlice = createSlice({
 
 export default loadingSlice.reducer;
 export const {
+  /** 
+   * it holds actions for loading state(failure,success) for authapi,productsapi,singleProductApi,cartApi
+  */
 authApiFailure,authApiLoading,authApiSuccess,productsApiFailure,productsApiLoading,productsApiSuccess,singleProductApiFailure,singleProductApiSuccess,singleProductApiLoading,cartApiLoading,cartApiSuccess,cartApiFailure
 } = loadingSlice.actions;
